@@ -11,6 +11,8 @@
 
 @implementation Utility
 
+static const CGFloat EPSILON = 0.001f;
+
 + (BOOL) intersects:(CGRect)a b:(CGRect)b
 {
     // Top left
@@ -26,5 +28,14 @@
     return (a1.x < b2.x) && (a2.x > b1.x) && (a1.y > b2.y) && (a2.y < b1.y);
 }
 
++ (CGFloat) euclieanDistance:(CGPoint)a b:(CGPoint)b
+{
+    return sqrt((a.x * b.x) + (a.y * b.y));
+}
+
++ (BOOL) pointsEqual:(CGPoint)a b:(CGPoint)b
+{
+    return (fabs(a.x - b.x) < EPSILON && fabs(a.y - b.y) < EPSILON);
+}
 
 @end

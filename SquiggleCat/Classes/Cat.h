@@ -25,9 +25,12 @@
     CCAction *hurtFaceAnimation_;    
     
     CGRect boundingBox_;
+    
+    CGPoint moveTarget_;
 }
 
 @property (nonatomic, readonly) CGRect boundingBox;
+@property (nonatomic, assign) CGPoint moveTarget;
 
 + (id) cat;
 
@@ -46,5 +49,7 @@
 - (void) fatten;
 
 - (void) slim;
+
+- (void) moveTowards:(CGPoint)pos;
 
 @end

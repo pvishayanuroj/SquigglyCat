@@ -171,6 +171,9 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     touchLocation = [self convertToNodeSpace:touchLocation];
     
     [cat_ walkTo:touchLocation];
+    
+    //DebugPoint(@"move", touchLocation);
+    cat_.moveTarget = touchLocation;    
 }
 
 #pragma mark - Helper Methods

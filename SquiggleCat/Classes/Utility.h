@@ -16,4 +16,8 @@
 
 + (BOOL) intersects:(CGRect)a b:(CGRect)b;
 
++ (CGFloat) euclieanDistance:(CGPoint)a b:(CGPoint)b;
+
++ (BOOL) pointsEqual:(CGPoint)a b:(CGPoint)b;
+
 @end

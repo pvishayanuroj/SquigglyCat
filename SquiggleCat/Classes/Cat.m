@@ -7,9 +7,11 @@
 //
 
 #import "Cat.h"
-
+#import "Utility.h"
 
 @implementation Cat
+
+static const CGFloat CAT_LOOP_SPEED = 1.0f/60.0f;
 
 static const CGFloat CAT_BB_X = 8.0f;
 static const CGFloat CAT_BB_Y = 0.0f;
@@ -28,6 +30,7 @@ static const CGFloat CAT_MIN_SIZE = 1.0f;
 static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
 @synthesize boundingBox = boundingBox_;
+@synthesize moveTarget = moveTarget_;
 
 + (id) cat
 {
@@ -56,6 +59,9 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         
         [self initAnimations];
         [self runTailAnimation];
+        
+        moveTarget_ = self.position;
+        //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED];           
     }
     
     return self;
@@ -149,6 +155,34 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     if (self.scale < CAT_MIN_SIZE) {
         self.scale = CAT_MIN_SIZE;
     }
+}
+
+- (void) moveLoop:(ccTime)dt
+{
+    [self moveTowards:moveTarget_];
+}
+
+- (void) moveTowards:(CGPoint)pos
+{
+    if (![Utility pointsEqual:pos b:self.position]) {
+        
+        CGFloat magnitude = [Utility euclieanDistance:pos b:self.position];
+        
+        if (magnitude == 0) {
+            return;
+        }
+        magnitude /= 15.0f;
+        
+        CGPoint delta = ccpSub(pos, self.position);
+        delta.x /= magnitude;
+        delta.y /= magnitude;
+        
+        //NSLog(@"mag: %4.2f", magnitude);
+        //DebugPoint(@"delta", delta);
+        
+        self.position = ccpAdd(self.position, delta);        
+    }
+
 }
 
 - (CGRect) boundingBoxInWorldCoord
