@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04E3097014D6385700685C10 /* HiScoresButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096614D6385700685C10 /* HiScoresButton-hd.png */; };
+		04E3097114D6385700685C10 /* HiScoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096714D6385700685C10 /* HiScoresButton.png */; };
+		04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096814D6385700685C10 /* HowToButton-hd.png */; };
+		04E3097314D6385700685C10 /* HowToButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096914D6385700685C10 /* HowToButton.png */; };
+		04E3097414D6385700685C10 /* SquigeeHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */; };
+		04E3097514D6385700685C10 /* SquigeeHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096B14D6385700685C10 /* SquigeeHeader.png */; };
+		04E3097614D6385700685C10 /* SquigeeInstructions-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */; };
+		04E3097714D6385700685C10 /* SquigeeInstructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096D14D6385700685C10 /* SquigeeInstructions.png */; };
+		04E3097814D6385700685C10 /* StartButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096E14D6385700685C10 /* StartButton-hd.png */; };
+		04E3097914D6385700685C10 /* StartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096F14D6385700685C10 /* StartButton.png */; };
+		04E3097D14D6386000685C10 /* Outline Font 28.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097B14D6386000685C10 /* Outline Font 28.fnt */; };
+		04E3097E14D6386000685C10 /* Outline Font 28.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097C14D6386000685C10 /* Outline Font 28.png */; };
+		04E3098014D6386500685C10 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097F14D6386500685C10 /* Default@2x.png */; };
+		04E3098314D638AB00685C10 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3098214D638AB00685C10 /* MenuScene.m */; };
+		04E3098614D6391500685C10 /* AnimatedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3098514D6391500685C10 /* AnimatedButton.m */; };
 		04F7B06114D5FCC300F774C4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F7B06014D5FCC300F774C4 /* QuartzCore.framework */; };
 		04F7B06314D5FCC300F774C4 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F7B06214D5FCC300F774C4 /* OpenGLES.framework */; };
 		04F7B06514D5FCC300F774C4 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04F7B06414D5FCC300F774C4 /* OpenAL.framework */; };
@@ -140,6 +155,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04E3096614D6385700685C10 /* HiScoresButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiScoresButton-hd.png"; sourceTree = "<group>"; };
+		04E3096714D6385700685C10 /* HiScoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiScoresButton.png; sourceTree = "<group>"; };
+		04E3096814D6385700685C10 /* HowToButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HowToButton-hd.png"; sourceTree = "<group>"; };
+		04E3096914D6385700685C10 /* HowToButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HowToButton.png; sourceTree = "<group>"; };
+		04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigeeHeader-hd.png"; sourceTree = "<group>"; };
+		04E3096B14D6385700685C10 /* SquigeeHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquigeeHeader.png; sourceTree = "<group>"; };
+		04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigeeInstructions-hd.png"; sourceTree = "<group>"; };
+		04E3096D14D6385700685C10 /* SquigeeInstructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquigeeInstructions.png; sourceTree = "<group>"; };
+		04E3096E14D6385700685C10 /* StartButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartButton-hd.png"; sourceTree = "<group>"; };
+		04E3096F14D6385700685C10 /* StartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartButton.png; sourceTree = "<group>"; };
+		04E3097B14D6386000685C10 /* Outline Font 28.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Outline Font 28.fnt"; sourceTree = "<group>"; };
+		04E3097C14D6386000685C10 /* Outline Font 28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Outline Font 28.png"; sourceTree = "<group>"; };
+		04E3097F14D6386500685C10 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
+		04E3098114D638AB00685C10 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScene.h; path = Classes/MenuScene.h; sourceTree = "<group>"; };
+		04E3098214D638AB00685C10 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuScene.m; path = Classes/MenuScene.m; sourceTree = "<group>"; };
+		04E3098414D6391500685C10 /* AnimatedButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnimatedButton.h; path = Classes/AnimatedButton.h; sourceTree = "<group>"; };
+		04E3098514D6391500685C10 /* AnimatedButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnimatedButton.m; path = Classes/AnimatedButton.m; sourceTree = "<group>"; };
 		04F7B05C14D5FCC300F774C4 /* SquiggleCat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SquiggleCat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04F7B06014D5FCC300F774C4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		04F7B06214D5FCC300F774C4 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -425,6 +457,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04E3097A14D6386000685C10 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				04E3097B14D6386000685C10 /* Outline Font 28.fnt */,
+				04E3097C14D6386000685C10 /* Outline Font 28.png */,
+			);
+			name = Fonts;
+			path = Resources/Fonts;
+			sourceTree = "<group>";
+		};
 		04F7B05114D5FCC300F774C4 = {
 			isa = PBXGroup;
 			children = (
@@ -462,6 +504,8 @@
 			children = (
 				04F7B20014D607AC00F774C4 /* Items */,
 				04F7B1FF14D607A400F774C4 /* Cocos2D Base */,
+				04E3098414D6391500685C10 /* AnimatedButton.h */,
+				04E3098514D6391500685C10 /* AnimatedButton.m */,
 				04F7B1DD14D5FD3500F774C4 /* Cat.h */,
 				04F7B1DE14D5FD3500F774C4 /* Cat.m */,
 				04F7B1DF14D5FD3500F774C4 /* CommonHeaders.h */,
@@ -471,6 +515,8 @@
 				04F7B1E514D5FD3500F774C4 /* GameLayer.m */,
 				04F7B1E614D5FD3500F774C4 /* GameScene.h */,
 				04F7B1E714D5FD3500F774C4 /* GameScene.m */,
+				04E3098114D638AB00685C10 /* MenuScene.h */,
+				04E3098214D638AB00685C10 /* MenuScene.m */,
 				04F7B1E814D5FD3500F774C4 /* Item.h */,
 				04F7B1E914D5FD3500F774C4 /* Item.m */,
 				04F7B1EA14D5FD3500F774C4 /* ItemDelegate.h */,
@@ -488,9 +534,11 @@
 		04F7B07114D5FCC300F774C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				04E3097A14D6386000685C10 /* Fonts */,
 				04F7B1D114D5FD2300F774C4 /* Images */,
 				04F7B1D314D5FD2300F774C4 /* Spritesheets */,
 				04F7B07214D5FCC300F774C4 /* Default.png */,
+				04E3097F14D6386500685C10 /* Default@2x.png */,
 				04F7B07414D5FCC300F774C4 /* fps_images.png */,
 				04F7B07614D5FCC300F774C4 /* Icon-72.png */,
 				04F7B07814D5FCC300F774C4 /* Icon-Small-50.png */,
@@ -818,6 +866,16 @@
 		04F7B1D114D5FD2300F774C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				04E3096614D6385700685C10 /* HiScoresButton-hd.png */,
+				04E3096714D6385700685C10 /* HiScoresButton.png */,
+				04E3096814D6385700685C10 /* HowToButton-hd.png */,
+				04E3096914D6385700685C10 /* HowToButton.png */,
+				04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */,
+				04E3096B14D6385700685C10 /* SquigeeHeader.png */,
+				04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */,
+				04E3096D14D6385700685C10 /* SquigeeInstructions.png */,
+				04E3096E14D6385700685C10 /* StartButton-hd.png */,
+				04E3096F14D6385700685C10 /* StartButton.png */,
 				04F7B1D214D5FD2300F774C4 /* background.png */,
 			);
 			name = Images;
@@ -930,6 +988,19 @@
 				04F7B1DA14D5FD2300F774C4 /* spritesheet-hd.png in Resources */,
 				04F7B1DB14D5FD2300F774C4 /* spritesheet.plist in Resources */,
 				04F7B1DC14D5FD2300F774C4 /* spritesheet.png in Resources */,
+				04E3097014D6385700685C10 /* HiScoresButton-hd.png in Resources */,
+				04E3097114D6385700685C10 /* HiScoresButton.png in Resources */,
+				04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */,
+				04E3097314D6385700685C10 /* HowToButton.png in Resources */,
+				04E3097414D6385700685C10 /* SquigeeHeader-hd.png in Resources */,
+				04E3097514D6385700685C10 /* SquigeeHeader.png in Resources */,
+				04E3097614D6385700685C10 /* SquigeeInstructions-hd.png in Resources */,
+				04E3097714D6385700685C10 /* SquigeeInstructions.png in Resources */,
+				04E3097814D6385700685C10 /* StartButton-hd.png in Resources */,
+				04E3097914D6385700685C10 /* StartButton.png in Resources */,
+				04E3097D14D6386000685C10 /* Outline Font 28.fnt in Resources */,
+				04E3097E14D6386000685C10 /* Outline Font 28.png in Resources */,
+				04E3098014D6386500685C10 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,6 +1119,8 @@
 				04F7B1FD14D5FD3500F774C4 /* Teddy.m in Sources */,
 				04F7B1FE14D5FD3500F774C4 /* TrashCan.m in Sources */,
 				04F7B20314D6338400F774C4 /* Utility.m in Sources */,
+				04E3098314D638AB00685C10 /* MenuScene.m in Sources */,
+				04E3098614D6391500685C10 /* AnimatedButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,6 +1214,7 @@
 				04F7B1D014D5FCC700F774C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
