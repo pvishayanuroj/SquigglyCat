@@ -91,13 +91,9 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
         
         CGRect itemRect = [item boundingBoxInWorldCoord];
         
-        //DebugRect(@"cat r", catRect);
-        //DebugRect(@"item r", itemRect);
-        
         // If collision has occurred, have each item handle it's collison,
         // let the grid know the space is open, and record the index of that 
         // particular item
-        //if (CGRectIntersectsRect(catRect, itemRect)) {
         if ([Utility intersects:catRect b:itemRect]) {
             [item collide];
             [gridStatus_ removeObject:item.gridPos];
@@ -134,12 +130,14 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
 {
     switch (item.itemType) {
         case kItemFish:
+            [cat_ fatten];
             break;
         case kItemMilk:
             break;
         case kItemTrashCan:
             break;
         case kItemLitterBox:
+            [cat_ slim];
             break;
         case kItemTeddyBear:
             break;
@@ -172,29 +170,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
     
-    CGFloat Velocity = 480.0/3.0;
-    CGPoint moveDifference = ccpSub(touchLocation, cat_.position);
-    float distanceToMove = ccpLength(moveDifference);
-    float moveDuration = distanceToMove / Velocity;
-    
-    //NSLog(@"touchLocation: %f, player: %f",touchLocation.x, cat_.position.x);
-    //NSLog(@"Move Difference: %f",moveDifference.x);
-    
-    if (moveDifference.x < 0) {
-        if(cat_.scaleX > 0){
-            cat_.scaleX *= -1;
-        }
-    } else {
-        if(cat_.scaleX < 0){
-            cat_.scaleX *= -1;
-        }
-    }    
-    
-    
-    id moveAction = [CCSequence actions:[CCMoveTo actionWithDuration:moveDuration position:touchLocation],nil];
-    [cat_ runAction:moveAction];
-    //[player walk];
-    
+    [cat_ walkTo:touchLocation];
 }
 
 #pragma mark - Helper Methods

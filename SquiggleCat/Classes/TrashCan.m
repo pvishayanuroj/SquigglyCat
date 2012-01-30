@@ -19,10 +19,12 @@ static const CGFloat TC_BB_HEIGHT = 60.0f;
 {
 	if ((self = [super init])) {
         
+        itemType_ = kItemTrashCan;
+        
         boundingBox_ = CGRectMake(TC_BB_X, TC_BB_Y, TC_BB_WIDTH, TC_BB_HEIGHT);
 
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"trashcan1.png"] retain];        
-        [self addChild:sprite_];
+        [self addChild:sprite_ z:-1];
         
         [super spawnIn];        
     }

@@ -467,6 +467,22 @@
 			path = Resources/Fonts;
 			sourceTree = "<group>";
 		};
+		04E3098C14D6459500685C10 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				04F7B1DF14D5FD3500F774C4 /* CommonHeaders.h */,
+				04F7B1E014D5FD3500F774C4 /* Debug.h */,
+				04F7B1E114D5FD3500F774C4 /* Enums.h */,
+				04E3098414D6391500685C10 /* AnimatedButton.h */,
+				04E3098514D6391500685C10 /* AnimatedButton.m */,
+				04F7B1EF14D5FD3500F774C4 /* Pair.h */,
+				04F7B1F014D5FD3500F774C4 /* Pair.m */,
+				04F7B20114D6338200F774C4 /* Utility.h */,
+				04F7B20214D6338300F774C4 /* Utility.m */,
+			);
+			name = Utility;
+			sourceTree = "<group>";
+		};
 		04F7B05114D5FCC300F774C4 = {
 			isa = PBXGroup;
 			children = (
@@ -502,15 +518,11 @@
 		04F7B07014D5FCC300F774C4 /* SquiggleCat */ = {
 			isa = PBXGroup;
 			children = (
+				04E3098C14D6459500685C10 /* Utility */,
 				04F7B20014D607AC00F774C4 /* Items */,
 				04F7B1FF14D607A400F774C4 /* Cocos2D Base */,
-				04E3098414D6391500685C10 /* AnimatedButton.h */,
-				04E3098514D6391500685C10 /* AnimatedButton.m */,
 				04F7B1DD14D5FD3500F774C4 /* Cat.h */,
 				04F7B1DE14D5FD3500F774C4 /* Cat.m */,
-				04F7B1DF14D5FD3500F774C4 /* CommonHeaders.h */,
-				04F7B1E014D5FD3500F774C4 /* Debug.h */,
-				04F7B1E114D5FD3500F774C4 /* Enums.h */,
 				04F7B1E414D5FD3500F774C4 /* GameLayer.h */,
 				04F7B1E514D5FD3500F774C4 /* GameLayer.m */,
 				04F7B1E614D5FD3500F774C4 /* GameScene.h */,
@@ -520,10 +532,6 @@
 				04F7B1E814D5FD3500F774C4 /* Item.h */,
 				04F7B1E914D5FD3500F774C4 /* Item.m */,
 				04F7B1EA14D5FD3500F774C4 /* ItemDelegate.h */,
-				04F7B1EF14D5FD3500F774C4 /* Pair.h */,
-				04F7B1F014D5FD3500F774C4 /* Pair.m */,
-				04F7B20114D6338200F774C4 /* Utility.h */,
-				04F7B20214D6338300F774C4 /* Utility.m */,
 				04F7B07114D5FCC300F774C4 /* Resources */,
 				04F7B08514D5FCC300F774C4 /* libs */,
 				04F7B1BE14D5FCC700F774C4 /* Supporting Files */,

@@ -19,10 +19,12 @@ static const CGFloat MK_BB_HEIGHT = 18.0f;
 {
 	if ((self = [super init])) {
         
+        itemType_ = kItemMilk;
+        
         boundingBox_ = CGRectMake(MK_BB_X, MK_BB_Y, MK_BB_WIDTH, MK_BB_HEIGHT);
         
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"milk.png"] retain];
-        [self addChild:sprite_];
+        [self addChild:sprite_ z:-1];
         
         [super spawnIn];        
     }

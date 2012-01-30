@@ -18,6 +18,12 @@
     
     CCSprite *spriteTail_;
 
+    CCAction *walkAnimation_;
+    
+    CCAction *surprisedAnimation_;
+    
+    CCAction *hurtFaceAnimation_;    
+    
     CGRect boundingBox_;
 }
 
@@ -27,6 +33,18 @@
 
 - (id) initCat;
 
+- (void) initAnimations;
+
+- (void) runTailAnimation;
+
+- (void) runWalkAction;
+
 - (CGRect) boundingBoxInWorldCoord;
+
+- (void) walkTo:(CGPoint)pos;
+
+- (void) fatten;
+
+- (void) slim;
 
 @end

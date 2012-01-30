@@ -13,17 +13,19 @@
 
 static const CGFloat LB_BB_X = 0.0f;
 static const CGFloat LB_BB_Y = 0.0f;
-static const CGFloat LB_BB_WIDTH = 20.0f;
-static const CGFloat LB_BB_HEIGHT = 10.0f;
+static const CGFloat LB_BB_WIDTH = 50.0f;
+static const CGFloat LB_BB_HEIGHT = 25.0f;
 
 - (id) init 
 {
 	if ((self = [super init])) {
         
+        itemType_ = kItemLitterBox;
+        
         boundingBox_ = CGRectMake(LB_BB_X, LB_BB_Y, LB_BB_WIDTH, LB_BB_HEIGHT);
         
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"litterbox.png"] retain];
-        [self addChild:sprite_];
+        [self addChild:sprite_ z:-1];
         
         [super spawnIn];        
     }

@@ -20,10 +20,12 @@ static const CGFloat TDY_BB_HEIGHT = 40.0f;
 {
 	if ((self = [super init])) {
         
+        itemType_ = kItemTeddyBear;
+        
         boundingBox_ = CGRectMake(TDY_BB_X, TDY_BB_Y, TDY_BB_WIDTH, TDY_BB_HEIGHT);
 
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"Teddy.png"] retain];
-        [self addChild:sprite_];    
+        [self addChild:sprite_ z:-1];    
         
         [super spawnIn];        
     }

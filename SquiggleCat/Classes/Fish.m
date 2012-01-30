@@ -19,11 +19,13 @@ static const CGFloat FS_BB_HEIGHT = 28.0f;
 - (id) init 
 {
 	if ((self = [super init])) {
+
+        itemType_ = kItemFish;        
         
         boundingBox_ = CGRectMake(FS_BB_X, FS_BB_Y, FS_BB_WIDTH, FS_BB_HEIGHT);
         
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1.png"] retain];
-        [self addChild:sprite_];       
+        [self addChild:sprite_ z:-1];       
         
         [super spawnIn];
     }
