@@ -18,6 +18,14 @@
     
     Cat *cat_;
     
+    CCLabelBMFont *highscoreLabel_;
+    
+    CCLabelBMFont *timerLabel_;    
+    
+    NSInteger timer_;
+    
+    NSInteger score_;
+    
     NSMutableArray *items_;
     
     NSMutableSet *gridStatus_;
@@ -33,5 +41,9 @@
 - (void) addItem:(ItemType)itemType gridPos:(Pair *)gridPos;
 
 - (CGPoint) posFromGridPos:(Pair *)gridPos;
+
+- (void) endLevel;
+
+- (void) incrementScore:(NSInteger)value;
 
 @end

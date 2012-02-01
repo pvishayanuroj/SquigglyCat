@@ -16,11 +16,20 @@
 #import "Litterbox.h"
 #import "TrashCan.h"
 #import "Utility.h"
+#import "MenuScene.h"
 
 @implementation GameLayer
 
 static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 1.0f;
+static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
+
+static const NSInteger GL_LEVEL_TIME = 10;
+
+static const CGFloat GL_SCORE_X = 100.0f;
+static const CGFloat GL_SCORE_Y = 460.0f;
+static const CGFloat GL_TIMER_X = 25.0f;
+static const CGFloat GL_TIMER_Y = 460.0f;
 
 static const CGFloat GL_CAT_START_X = 100.0f;
 static const CGFloat GL_CAT_START_Y = 200.0f;
@@ -41,6 +50,21 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
         
         gridStatus_ = [[NSMutableSet set] retain];
         
+        // Initialize timer and score
+        score_ = 0;
+        NSString *scoreText = [NSString stringWithFormat:@"%d", score_];
+        highscoreLabel_ = [[CCLabelBMFont labelWithString:scoreText fntFile:@"Outline Font 28.fnt"] retain];
+        highscoreLabel_.position = ccp(GL_SCORE_X, GL_SCORE_Y);
+        highscoreLabel_.scale = 0.8f;
+        [self addChild:highscoreLabel_];
+        
+        timer_ = GL_LEVEL_TIME;
+        NSString *timeText = [NSString stringWithFormat:@"%d", timer_];
+        timerLabel_ = [[CCLabelBMFont labelWithString:timeText fntFile:@"Outline Font 28.fnt"] retain];
+        timerLabel_.position = ccp(GL_TIMER_X, GL_TIMER_Y);
+        timerLabel_.scale = 1.0f;
+        [self addChild:timerLabel_];        
+        
         // Initialize the cat
         cat_ = [[Cat cat] retain];
         cat_.position = CGPointMake(GL_CAT_START_X, GL_CAT_START_Y);
@@ -51,7 +75,8 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
         
         // Initialize loops
         [self schedule:@selector(collisionLoop:) interval:GL_COLLISION_LOOP_SPEED];
-        [self schedule:@selector(spawnLoop:) interval:GL_SPAWN_LOOP_SPEED];   
+        [self schedule:@selector(spawnLoop:) interval:GL_SPAWN_LOOP_SPEED];  
+        [self schedule:@selector(timerLoop:) interval:GL_TIMER_LOOP_SPEED];          
         
         /* WTF Apple???
         CGRect t1 = CGRectMake(83, 84, 40, 32);
@@ -73,6 +98,8 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     [gridStatus_ release];
     [items_ release];
     [cat_ release];
+    [timerLabel_ release];
+    [highscoreLabel_ release];    
     
     [super dealloc];
 }
@@ -124,6 +151,17 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     }
 }
 
+- (void) timerLoop:(ccTime)dt
+{
+    timer_--;
+    if (timer_ < 0) {
+        [self endLevel];
+    }
+    else {
+        [timerLabel_ setString:[NSString stringWithFormat:@"%d", timer_]];
+    }
+}
+
 #pragma mark - Delegate Methods
 
 - (void) itemCollided:(Item *)item
@@ -131,6 +169,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     switch (item.itemType) {
         case kItemFish:
             [cat_ fatten];
+            [self incrementScore:100];
             break;
         case kItemMilk:
             break;
@@ -213,6 +252,22 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
 - (CGPoint) posFromGridPos:(Pair *)gridPos
 {
     return CGPointMake(gridPos.x * gridSize_.width  - gridSize_.width / 2, gridPos.y * gridSize_.height - gridSize_.height / 2);
+}
+
+- (void) endLevel
+{
+    [self unschedule:@selector(spawnLoop:)];
+    [self unschedule:@selector(collisionLoop:)];
+    [self unschedule:@selector(timerLoop:)];
+    
+    MenuScene *menuScene = [MenuScene node];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:menuScene]];
+}
+
+- (void) incrementScore:(NSInteger)value
+{
+    score_ += value;
+    [highscoreLabel_ setString:[NSString stringWithFormat:@"%d", score_]];
 }
 
 @end
