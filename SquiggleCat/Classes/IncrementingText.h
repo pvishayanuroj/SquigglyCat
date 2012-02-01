@@ -16,14 +16,16 @@
     
     NSInteger score_;
     
+    CCLabelBMFont *text_;
+    
 }
 
-@property (nonatomic, readonly) NSInteger score;
+@property (nonatomic, assign) NSInteger score;
 
 + (id) incrementingText;
 
 - (id) initIncrementingText;
 
-- (void) setScore:(NSInteger)score;
+- (void) updateTextScore:(NSInteger)score;
 
 @end

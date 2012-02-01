@@ -13,18 +13,17 @@
 
 @class Cat;
 @class Pair;
+@class IncrementingText;
 
 @interface GameLayer : CCLayer <ItemDelegate> {
     
     Cat *cat_;
     
-    CCLabelBMFont *highscoreLabel_;
+    IncrementingText *scoreText_;
     
     CCLabelBMFont *timerLabel_;    
     
     NSInteger timer_;
-    
-    NSInteger score_;
     
     NSMutableArray *items_;
     
@@ -43,7 +42,5 @@
 - (CGPoint) posFromGridPos:(Pair *)gridPos;
 
 - (void) endLevel;
-
-- (void) incrementScore:(NSInteger)value;
 
 @end
