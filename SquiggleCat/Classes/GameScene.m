@@ -8,8 +8,11 @@
 
 #import "GameScene.h"
 #import "GameLayer.h"
+#import "EndGameLayer.h"
 
 @implementation GameScene
+
+static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
 
 - (id) init
 {
@@ -28,8 +31,12 @@
     return self;
 }
 
-- (void)dealloc
+- (void) dealloc
 {
+#if DEBUG_DEALLOC
+    NSLog(@"Menu Scene dealloc'd");
+#endif
+    
     [super dealloc];
 }
 
@@ -38,6 +45,18 @@
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet.plist"];
     CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet.png"];
     [self addChild:spriteSheet];
+}
+
+- (void) loadScoreScreen:(NSInteger)score
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];    
+    
+    EndGameLayer *endGameLayer = [EndGameLayer endGameLayer:score];
+    endGameLayer.position = ccp(size.width, 0);
+    [self addChild:endGameLayer];
+
+    id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, 0)];
+    [endGameLayer runAction:move];
 }
 
 @end

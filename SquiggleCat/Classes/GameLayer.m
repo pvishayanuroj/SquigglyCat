@@ -18,6 +18,7 @@
 #import "Utility.h"
 #import "MenuScene.h"
 #import "IncrementingText.h"
+#import "GameScene.h"
 
 @implementation GameLayer
 
@@ -25,7 +26,7 @@ static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 3.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
-static const NSInteger GL_LEVEL_TIME = 60;
+static const NSInteger GL_LEVEL_TIME = 5;
 
 static const CGFloat GL_SCORE_X = 100.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -42,6 +43,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     if ((self = [super init])) {
         
         self.isTouchEnabled = YES;
+        //clickEnabled_ = YES;
         
         // Initialize the grid data variables
         numGridsX_ = 8;
@@ -259,8 +261,10 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     [self unschedule:@selector(collisionLoop:)];
     [self unschedule:@selector(timerLoop:)];
     
-    MenuScene *menuScene = [MenuScene node];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:menuScene]];
+    self.isTouchEnabled = NO;
+    
+    GameScene *gameScene = (GameScene *)[[CCDirector sharedDirector] runningScene];
+    [gameScene loadScoreScreen:scoreText_.score];
 }
 
 @end

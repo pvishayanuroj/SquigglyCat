@@ -16,4 +16,6 @@
 
 - (void) loadSpriteSheet;
 
+- (void) loadScoreScreen:(NSInteger)score;
+
 @end

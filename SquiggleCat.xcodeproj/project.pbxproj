@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047F16C714DA407400C9F9E0 /* Menu Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C314DA407400C9F9E0 /* Menu Text.png */; };
+		047F16C814DA407400C9F9E0 /* Restart Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C414DA407400C9F9E0 /* Restart Text.png */; };
+		047F16C914DA407400C9F9E0 /* Victory Banner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */; };
+		047F16CA14DA407400C9F9E0 /* Victory Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C614DA407400C9F9E0 /* Victory Banner.png */; };
+		047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */; };
 		04E3097014D6385700685C10 /* HiScoresButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096614D6385700685C10 /* HiScoresButton-hd.png */; };
 		04E3097114D6385700685C10 /* HiScoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096714D6385700685C10 /* HiScoresButton.png */; };
 		04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096814D6385700685C10 /* HowToButton-hd.png */; };
@@ -156,6 +161,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		047F16C314DA407400C9F9E0 /* Menu Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu Text.png"; sourceTree = "<group>"; };
+		047F16C414DA407400C9F9E0 /* Restart Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restart Text.png"; sourceTree = "<group>"; };
+		047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Victory Banner-hd.png"; sourceTree = "<group>"; };
+		047F16C614DA407400C9F9E0 /* Victory Banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Victory Banner.png"; sourceTree = "<group>"; };
+		047F16CC14DA419B00C9F9E0 /* EndGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EndGameLayer.h; path = Classes/EndGameLayer.h; sourceTree = "<group>"; };
+		047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EndGameLayer.m; path = Classes/EndGameLayer.m; sourceTree = "<group>"; };
 		04E3096614D6385700685C10 /* HiScoresButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiScoresButton-hd.png"; sourceTree = "<group>"; };
 		04E3096714D6385700685C10 /* HiScoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiScoresButton.png; sourceTree = "<group>"; };
 		04E3096814D6385700685C10 /* HowToButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HowToButton-hd.png"; sourceTree = "<group>"; };
@@ -530,6 +541,8 @@
 				04F7B1DE14D5FD3500F774C4 /* Cat.m */,
 				04F7B1E414D5FD3500F774C4 /* GameLayer.h */,
 				04F7B1E514D5FD3500F774C4 /* GameLayer.m */,
+				047F16CC14DA419B00C9F9E0 /* EndGameLayer.h */,
+				047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */,
 				04F7B1E614D5FD3500F774C4 /* GameScene.h */,
 				04F7B1E714D5FD3500F774C4 /* GameScene.m */,
 				04E3098114D638AB00685C10 /* MenuScene.h */,
@@ -879,6 +892,10 @@
 		04F7B1D114D5FD2300F774C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				047F16C314DA407400C9F9E0 /* Menu Text.png */,
+				047F16C414DA407400C9F9E0 /* Restart Text.png */,
+				047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */,
+				047F16C614DA407400C9F9E0 /* Victory Banner.png */,
 				04E3096614D6385700685C10 /* HiScoresButton-hd.png */,
 				04E3096714D6385700685C10 /* HiScoresButton.png */,
 				04E3096814D6385700685C10 /* HowToButton-hd.png */,
@@ -1014,6 +1031,10 @@
 				04E3097D14D6386000685C10 /* Outline Font 28.fnt in Resources */,
 				04E3097E14D6386000685C10 /* Outline Font 28.png in Resources */,
 				04E3098014D6386500685C10 /* Default@2x.png in Resources */,
+				047F16C714DA407400C9F9E0 /* Menu Text.png in Resources */,
+				047F16C814DA407400C9F9E0 /* Restart Text.png in Resources */,
+				047F16C914DA407400C9F9E0 /* Victory Banner-hd.png in Resources */,
+				047F16CA14DA407400C9F9E0 /* Victory Banner.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,6 +1156,7 @@
 				04E3098314D638AB00685C10 /* MenuScene.m in Sources */,
 				04E3098614D6391500685C10 /* AnimatedButton.m in Sources */,
 				04E3099314D7ACC800685C10 /* IncrementingText.m in Sources */,
+				047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

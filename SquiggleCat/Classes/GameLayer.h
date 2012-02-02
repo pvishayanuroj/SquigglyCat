@@ -35,6 +35,7 @@
     
     CGSize gridSize_;
     
+    BOOL clickEnabled_;
 }
 
 - (void) addItem:(ItemType)itemType gridPos:(Pair *)gridPos;
