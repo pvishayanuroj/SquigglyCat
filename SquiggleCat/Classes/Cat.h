@@ -20,17 +20,24 @@
 
     CCAction *walkAnimation_;
     
-    CCAction *surprisedAnimation_;
+    CCAction *earFlapAnimation_;
     
-    CCAction *hurtFaceAnimation_;    
+    CCAction *hurtFaceAnimation_;
+    
+    CCAction *happyFaceAnimation_;
+    
+    CCAction *surprisedFaceAnimation_;
     
     CGRect boundingBox_;
     
     CGPoint moveTarget_;
+    
+    NSInteger catVelocity;
 }
 
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) CGPoint moveTarget;
+@property (nonatomic) NSInteger catVelocity;
 
 + (id) cat;
 
@@ -39,6 +46,8 @@
 - (void) initAnimations;
 
 - (void) runTailAnimation;
+
+- (void) catBreathing;
 
 - (void) runWalkAction;
 
@@ -51,5 +60,12 @@
 - (void) slim;
 
 - (void) moveTowards:(CGPoint)pos;
+
+- (void) catHurt;
+
+- (void) catHappy;
+
+- (void) catSurprised;
+
 
 @end

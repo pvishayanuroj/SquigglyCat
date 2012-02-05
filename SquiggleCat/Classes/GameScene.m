@@ -52,7 +52,7 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
     CGSize size = [[CCDirector sharedDirector] winSize];    
     
     EndGameLayer *endGameLayer = [EndGameLayer endGameLayer:score];
-    endGameLayer.position = ccp(size.width, 0);
+    endGameLayer.position = ccp(0, size.height);
     [self addChild:endGameLayer];
 
     id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, 0)];

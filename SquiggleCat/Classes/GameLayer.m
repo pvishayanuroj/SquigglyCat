@@ -26,11 +26,11 @@ static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 3.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
-static const NSInteger GL_LEVEL_TIME = 5;
+static const NSInteger GL_LEVEL_TIME = 30;
 
-static const CGFloat GL_SCORE_X = 100.0f;
+static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
-static const CGFloat GL_TIMER_X = 25.0f;
+static const CGFloat GL_TIMER_X = 40.0f;
 static const CGFloat GL_TIMER_Y = 460.0f;
 
 static const CGFloat GL_CAT_START_X = 100.0f;
@@ -61,9 +61,9 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
         
         timer_ = GL_LEVEL_TIME;
         NSString *timeText = [NSString stringWithFormat:@"%d", timer_];
-        timerLabel_ = [[CCLabelBMFont labelWithString:timeText fntFile:@"Outline Font 28.fnt"] retain];
+        timerLabel_ = [[CCLabelBMFont labelWithString:timeText fntFile:@"SquigglyWhite.fnt"] retain];
         timerLabel_.position = ccp(GL_TIMER_X, GL_TIMER_Y);
-        timerLabel_.scale = 1.0f;
+        timerLabel_.scale = 0.75f;
         [self addChild:timerLabel_];        
         
         // Initialize the cat
@@ -173,13 +173,18 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
             scoreText_.score += 100;
             break;
         case kItemMilk:
+            cat_.catVelocity += 20;
             break;
         case kItemTrashCan:
+            [cat_ catHurt];
             break;
         case kItemLitterBox:
             [cat_ slim];
+            cat_.catVelocity = 480.0f/3.0f;
+            [cat_ catHappy];
             break;
         case kItemTeddyBear:
+            [cat_ catSurprised];
             break;
         default:
             NSAssert(NO, @"Invalid item type for itemCollided");

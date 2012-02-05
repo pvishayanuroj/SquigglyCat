@@ -16,14 +16,10 @@
 		04E3097114D6385700685C10 /* HiScoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096714D6385700685C10 /* HiScoresButton.png */; };
 		04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096814D6385700685C10 /* HowToButton-hd.png */; };
 		04E3097314D6385700685C10 /* HowToButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096914D6385700685C10 /* HowToButton.png */; };
-		04E3097414D6385700685C10 /* SquigeeHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */; };
-		04E3097514D6385700685C10 /* SquigeeHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096B14D6385700685C10 /* SquigeeHeader.png */; };
 		04E3097614D6385700685C10 /* SquigeeInstructions-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */; };
 		04E3097714D6385700685C10 /* SquigeeInstructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096D14D6385700685C10 /* SquigeeInstructions.png */; };
 		04E3097814D6385700685C10 /* StartButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096E14D6385700685C10 /* StartButton-hd.png */; };
 		04E3097914D6385700685C10 /* StartButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096F14D6385700685C10 /* StartButton.png */; };
-		04E3097D14D6386000685C10 /* Outline Font 28.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097B14D6386000685C10 /* Outline Font 28.fnt */; };
-		04E3097E14D6386000685C10 /* Outline Font 28.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097C14D6386000685C10 /* Outline Font 28.png */; };
 		04E3098014D6386500685C10 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3097F14D6386500685C10 /* Default@2x.png */; };
 		04E3098314D638AB00685C10 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3098214D638AB00685C10 /* MenuScene.m */; };
 		04E3098614D6391500685C10 /* AnimatedButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E3098514D6391500685C10 /* AnimatedButton.m */; };
@@ -158,6 +154,16 @@
 		04F7B1FD14D5FD3500F774C4 /* Teddy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7B1F214D5FD3500F774C4 /* Teddy.m */; };
 		04F7B1FE14D5FD3500F774C4 /* TrashCan.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7B1F414D5FD3500F774C4 /* TrashCan.m */; };
 		04F7B20314D6338400F774C4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7B20214D6338300F774C4 /* Utility.m */; };
+		5289A4D014DE747E006DD2BD /* Menu-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CA14DE747E006DD2BD /* Menu-Button-hd.png */; };
+		5289A4D114DE747E006DD2BD /* Menu-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CB14DE747E006DD2BD /* Menu-Button.png */; };
+		5289A4D214DE747E006DD2BD /* Replay-Button-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CC14DE747E006DD2BD /* Replay-Button-hd.png */; };
+		5289A4D314DE747E006DD2BD /* Replay-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CD14DE747E006DD2BD /* Replay-Button.png */; };
+		5289A4D414DE747E006DD2BD /* ScoreResults-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CE14DE747E006DD2BD /* ScoreResults-hd.png */; };
+		5289A4D514DE747E006DD2BD /* ScoreResults.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4CF14DE747E006DD2BD /* ScoreResults.png */; };
+		5289A4D914DE74E0006DD2BD /* SquigeeHeader-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4D714DE74E0006DD2BD /* SquigeeHeader-hd.png */; };
+		5289A4DA14DE74E0006DD2BD /* SquigeeHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4D814DE74E0006DD2BD /* SquigeeHeader.png */; };
+		5289A4DD14DEC65F006DD2BD /* SquigglyWhite.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4DB14DEC65F006DD2BD /* SquigglyWhite.fnt */; };
+		5289A4DE14DEC65F006DD2BD /* SquigglyWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5289A4DC14DEC65F006DD2BD /* SquigglyWhite.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,14 +177,10 @@
 		04E3096714D6385700685C10 /* HiScoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiScoresButton.png; sourceTree = "<group>"; };
 		04E3096814D6385700685C10 /* HowToButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HowToButton-hd.png"; sourceTree = "<group>"; };
 		04E3096914D6385700685C10 /* HowToButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HowToButton.png; sourceTree = "<group>"; };
-		04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigeeHeader-hd.png"; sourceTree = "<group>"; };
-		04E3096B14D6385700685C10 /* SquigeeHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquigeeHeader.png; sourceTree = "<group>"; };
 		04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigeeInstructions-hd.png"; sourceTree = "<group>"; };
 		04E3096D14D6385700685C10 /* SquigeeInstructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SquigeeInstructions.png; sourceTree = "<group>"; };
 		04E3096E14D6385700685C10 /* StartButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StartButton-hd.png"; sourceTree = "<group>"; };
 		04E3096F14D6385700685C10 /* StartButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartButton.png; sourceTree = "<group>"; };
-		04E3097B14D6386000685C10 /* Outline Font 28.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Outline Font 28.fnt"; sourceTree = "<group>"; };
-		04E3097C14D6386000685C10 /* Outline Font 28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Outline Font 28.png"; sourceTree = "<group>"; };
 		04E3097F14D6386500685C10 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/Default@2x.png"; sourceTree = "<group>"; };
 		04E3098114D638AB00685C10 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScene.h; path = Classes/MenuScene.h; sourceTree = "<group>"; };
 		04E3098214D638AB00685C10 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuScene.m; path = Classes/MenuScene.m; sourceTree = "<group>"; };
@@ -450,6 +452,16 @@
 		04F7B1F414D5FD3500F774C4 /* TrashCan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrashCan.m; path = Classes/TrashCan.m; sourceTree = "<group>"; };
 		04F7B20114D6338200F774C4 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = Classes/Utility.h; sourceTree = "<group>"; };
 		04F7B20214D6338300F774C4 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utility.m; path = Classes/Utility.m; sourceTree = "<group>"; };
+		5289A4CA14DE747E006DD2BD /* Menu-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button-hd.png"; path = "../../../../../SquigeeCat/Menu-Button-hd.png"; sourceTree = "<group>"; };
+		5289A4CB14DE747E006DD2BD /* Menu-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Menu-Button.png"; path = "../../../../../SquigeeCat/Menu-Button.png"; sourceTree = "<group>"; };
+		5289A4CC14DE747E006DD2BD /* Replay-Button-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Replay-Button-hd.png"; path = "../../../../../SquigeeCat/Replay-Button-hd.png"; sourceTree = "<group>"; };
+		5289A4CD14DE747E006DD2BD /* Replay-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Replay-Button.png"; path = "../../../../../SquigeeCat/Replay-Button.png"; sourceTree = "<group>"; };
+		5289A4CE14DE747E006DD2BD /* ScoreResults-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ScoreResults-hd.png"; path = "../../../../../SquigeeCat/ScoreResults-hd.png"; sourceTree = "<group>"; };
+		5289A4CF14DE747E006DD2BD /* ScoreResults.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ScoreResults.png; path = ../../../../../SquigeeCat/ScoreResults.png; sourceTree = "<group>"; };
+		5289A4D714DE74E0006DD2BD /* SquigeeHeader-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "SquigeeHeader-hd.png"; path = "../../../../../SquigeeCat/TitlePage/SquigeeHeader-hd.png"; sourceTree = "<group>"; };
+		5289A4D814DE74E0006DD2BD /* SquigeeHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SquigeeHeader.png; path = ../../../../../SquigeeCat/TitlePage/SquigeeHeader.png; sourceTree = "<group>"; };
+		5289A4DB14DEC65F006DD2BD /* SquigglyWhite.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = SquigglyWhite.fnt; path = ../../../../SquigglyWhite.fnt; sourceTree = "<group>"; };
+		5289A4DC14DEC65F006DD2BD /* SquigglyWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SquigglyWhite.png; path = ../../../../SquigglyWhite.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -474,8 +486,8 @@
 		04E3097A14D6386000685C10 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				04E3097B14D6386000685C10 /* Outline Font 28.fnt */,
-				04E3097C14D6386000685C10 /* Outline Font 28.png */,
+				5289A4DB14DEC65F006DD2BD /* SquigglyWhite.fnt */,
+				5289A4DC14DEC65F006DD2BD /* SquigglyWhite.png */,
 			);
 			name = Fonts;
 			path = Resources/Fonts;
@@ -892,6 +904,14 @@
 		04F7B1D114D5FD2300F774C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5289A4CA14DE747E006DD2BD /* Menu-Button-hd.png */,
+				5289A4CB14DE747E006DD2BD /* Menu-Button.png */,
+				5289A4CC14DE747E006DD2BD /* Replay-Button-hd.png */,
+				5289A4CD14DE747E006DD2BD /* Replay-Button.png */,
+				5289A4CE14DE747E006DD2BD /* ScoreResults-hd.png */,
+				5289A4CF14DE747E006DD2BD /* ScoreResults.png */,
+				5289A4D714DE74E0006DD2BD /* SquigeeHeader-hd.png */,
+				5289A4D814DE74E0006DD2BD /* SquigeeHeader.png */,
 				047F16C314DA407400C9F9E0 /* Menu Text.png */,
 				047F16C414DA407400C9F9E0 /* Restart Text.png */,
 				047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */,
@@ -900,8 +920,6 @@
 				04E3096714D6385700685C10 /* HiScoresButton.png */,
 				04E3096814D6385700685C10 /* HowToButton-hd.png */,
 				04E3096914D6385700685C10 /* HowToButton.png */,
-				04E3096A14D6385700685C10 /* SquigeeHeader-hd.png */,
-				04E3096B14D6385700685C10 /* SquigeeHeader.png */,
 				04E3096C14D6385700685C10 /* SquigeeInstructions-hd.png */,
 				04E3096D14D6385700685C10 /* SquigeeInstructions.png */,
 				04E3096E14D6385700685C10 /* StartButton-hd.png */,
@@ -1022,19 +1040,25 @@
 				04E3097114D6385700685C10 /* HiScoresButton.png in Resources */,
 				04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */,
 				04E3097314D6385700685C10 /* HowToButton.png in Resources */,
-				04E3097414D6385700685C10 /* SquigeeHeader-hd.png in Resources */,
-				04E3097514D6385700685C10 /* SquigeeHeader.png in Resources */,
 				04E3097614D6385700685C10 /* SquigeeInstructions-hd.png in Resources */,
 				04E3097714D6385700685C10 /* SquigeeInstructions.png in Resources */,
 				04E3097814D6385700685C10 /* StartButton-hd.png in Resources */,
 				04E3097914D6385700685C10 /* StartButton.png in Resources */,
-				04E3097D14D6386000685C10 /* Outline Font 28.fnt in Resources */,
-				04E3097E14D6386000685C10 /* Outline Font 28.png in Resources */,
 				04E3098014D6386500685C10 /* Default@2x.png in Resources */,
 				047F16C714DA407400C9F9E0 /* Menu Text.png in Resources */,
 				047F16C814DA407400C9F9E0 /* Restart Text.png in Resources */,
 				047F16C914DA407400C9F9E0 /* Victory Banner-hd.png in Resources */,
 				047F16CA14DA407400C9F9E0 /* Victory Banner.png in Resources */,
+				5289A4D014DE747E006DD2BD /* Menu-Button-hd.png in Resources */,
+				5289A4D114DE747E006DD2BD /* Menu-Button.png in Resources */,
+				5289A4D214DE747E006DD2BD /* Replay-Button-hd.png in Resources */,
+				5289A4D314DE747E006DD2BD /* Replay-Button.png in Resources */,
+				5289A4D414DE747E006DD2BD /* ScoreResults-hd.png in Resources */,
+				5289A4D514DE747E006DD2BD /* ScoreResults.png in Resources */,
+				5289A4D914DE74E0006DD2BD /* SquigeeHeader-hd.png in Resources */,
+				5289A4DA14DE74E0006DD2BD /* SquigeeHeader.png in Resources */,
+				5289A4DD14DEC65F006DD2BD /* SquigglyWhite.fnt in Resources */,
+				5289A4DE14DEC65F006DD2BD /* SquigglyWhite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

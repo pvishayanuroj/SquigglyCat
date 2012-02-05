@@ -31,6 +31,7 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
 @synthesize boundingBox = boundingBox_;
 @synthesize moveTarget = moveTarget_;
+@synthesize catVelocity;
 
 + (id) cat
 {
@@ -59,6 +60,9 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         
         [self initAnimations];
         [self runTailAnimation];
+        [self catBreathing];
+        
+        catVelocity = CAT_VELOCITY;
         
         moveTarget_ = self.position;
         //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED];           
@@ -73,14 +77,18 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [spriteEye_ release];
     [spriteTail_ release];
     [walkAnimation_ release];
-    [surprisedAnimation_ release];
+    [earFlapAnimation_ release];
     [hurtFaceAnimation_ release];
+    [happyFaceAnimation_ release];
+    [surprisedFaceAnimation_ release];
 
     [super dealloc];
 }
 
 - (void) initAnimations
 {
+    //*******Body Animations*******//
+    //Walking Animation
     NSMutableArray *walkAnimFrames = [NSMutableArray array];
     [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_walkLeft.png"]];
     [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_walkRight.png"]];
@@ -88,21 +96,55 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.2f];
     walkAnimation_ = [[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:YES]] retain];    
     
-    NSMutableArray *surprisedAnimFrames = [NSMutableArray array];
-    [surprisedAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    [surprisedAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
-    [surprisedAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    [surprisedAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
-    [surprisedAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    CCAnimation *surprisedAnim = [CCAnimation animationWithFrames:surprisedAnimFrames delay:0.2f];
-    surprisedAnimation_ = [[CCAnimate actionWithAnimation:surprisedAnim] retain];
+    //Earflapping Animation
+    NSMutableArray *earFlapAnimFrames = [NSMutableArray array];
+    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
+    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
+    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
+    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
+    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
+    CCAnimation *surprisedAnim = [CCAnimation animationWithFrames:earFlapAnimFrames delay:0.2f];
+    earFlapAnimation_ = [[CCAnimate actionWithAnimation:surprisedAnim] retain];
     
-    NSMutableArray * hurtFaceAnimFrames = [NSMutableArray array];
+    //*******Facial Animations*******//
+    //Hurt
+    NSMutableArray *hurtFaceAnimFrames = [NSMutableArray array];
     [hurtFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_hurt.png"]];
     CCAnimation *hurtFace = [CCAnimation animationWithFrames:hurtFaceAnimFrames delay:1.0f];
     hurtFaceAnimation_ = [[CCAnimate actionWithAnimation:hurtFace] retain];    
+    
+    //Happy
+    NSMutableArray *happyFaceAnimFrames = [NSMutableArray array];
+    [happyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_happy.png"]];
+    CCAnimation *happyFace = [CCAnimation animationWithFrames:happyFaceAnimFrames delay:1.0f];
+    happyFaceAnimation_ = [[CCAnimate actionWithAnimation:happyFace] retain];
+    
+    //Surprised
+    NSMutableArray *surprisedFaceAnimFrames = [NSMutableArray array];
+    [surprisedFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_surprised.png"]];
+    CCAnimation *surprisedFace = [CCAnimation animationWithFrames:surprisedFaceAnimFrames delay:1.0f];
+    surprisedFaceAnimation_ = [[CCAnimate actionWithAnimation:surprisedFace] retain]; 
 }
 
+- (void) catHurt
+{
+    [spriteEye_ stopAllActions];
+    [spriteEye_ runAction:hurtFaceAnimation_];
+}
+
+- (void) catHappy
+{
+    [spriteEye_ stopAllActions];
+    [spriteBody_ stopAllActions];
+    [spriteEye_ runAction:happyFaceAnimation_];
+    [spriteBody_ runAction:earFlapAnimation_];
+}
+
+- (void) catSurprised
+{
+    [spriteEye_ stopAllActions];    
+    [spriteEye_ runAction:surprisedFaceAnimation_];
+}
 - (void) runWalkAction
 {
     [spriteBody_ stopAllActions];
@@ -117,9 +159,17 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [spriteTail_ runAction:repeat];    
 }
 
+- (void) catBreathing
+{
+    id breatheIn = [CCMoveBy actionWithDuration:0.8f position:ccp(0,3)];
+    id breatheOut = [CCMoveBy actionWithDuration:1.2f position:ccp(0,-3)];
+    id repeat = [CCRepeatForever actionWithAction:[CCSequence actions:breatheIn, breatheOut, nil]];
+    [spriteEye_ runAction:repeat];
+}
+
 - (void) walkTo:(CGPoint)pos
 {
-    CGFloat velocity = CAT_VELOCITY;
+    CGFloat velocity = catVelocity;
     CGPoint delta = ccpSub(pos, self.position);
     CGFloat distance = ccpLength(delta);
     CGFloat moveDuration = distance / velocity;
