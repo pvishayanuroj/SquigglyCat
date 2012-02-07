@@ -23,8 +23,16 @@ static const CGFloat FS_BB_HEIGHT = 28.0f;
         itemType_ = kItemFish;        
         
         boundingBox_ = CGRectMake(FS_BB_X, FS_BB_Y, FS_BB_WIDTH, FS_BB_HEIGHT);
-        
+        int x = rand()%3;
+        if (x==1) {
         sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1.png"] retain];
+        }
+        else if (x==2){
+        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2.png"] retain];
+        }
+        else {
+        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3.png"] retain];
+        }
         [self addChild:sprite_ z:-1];       
         
         [super spawnIn];

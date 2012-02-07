@@ -23,7 +23,7 @@
 @implementation GameLayer
 
 static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
-static const CGFloat GL_SPAWN_LOOP_SPEED = 3.0f;
+static const CGFloat GL_SPAWN_LOOP_SPEED = 2.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
 static const NSInteger GL_LEVEL_TIME = 30;
@@ -46,7 +46,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
         //clickEnabled_ = YES;
         
         // Initialize the grid data variables
-        numGridsX_ = 8;
+        numGridsX_ = 6;
         numGridsY_ = 8;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         gridSize_ = CGSizeMake(winSize.width / numGridsX_, winSize.height / numGridsY_);
@@ -170,10 +170,12 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     switch (item.itemType) {
         case kItemFish:
             [cat_ fatten];
+            [cat_ catHappy];
             scoreText_.score += 100;
             break;
         case kItemMilk:
             cat_.catVelocity += 20;
+            [cat_ catHappy];
             break;
         case kItemTrashCan:
             [cat_ catHurt];
@@ -184,7 +186,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
             [cat_ catHappy];
             break;
         case kItemTeddyBear:
-            [cat_ catSurprised];
+            [cat_ catDizzy];
             break;
         default:
             NSAssert(NO, @"Invalid item type for itemCollided");

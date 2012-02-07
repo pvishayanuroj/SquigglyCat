@@ -65,7 +65,8 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         catVelocity = CAT_VELOCITY;
         
         moveTarget_ = self.position;
-        //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED];           
+        //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED]; 
+        
     }
     
     return self;
@@ -103,8 +104,8 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
     [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
     [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    CCAnimation *surprisedAnim = [CCAnimation animationWithFrames:earFlapAnimFrames delay:0.2f];
-    earFlapAnimation_ = [[CCAnimate actionWithAnimation:surprisedAnim] retain];
+    CCAnimation *earFlapAnim = [CCAnimation animationWithFrames:earFlapAnimFrames delay:0.2f];
+    earFlapAnimation_ = [[CCAnimate actionWithAnimation:earFlapAnim] retain];
     
     //*******Facial Animations*******//
     //Hurt
@@ -124,6 +125,16 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [surprisedFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_surprised.png"]];
     CCAnimation *surprisedFace = [CCAnimation animationWithFrames:surprisedFaceAnimFrames delay:1.0f];
     surprisedFaceAnimation_ = [[CCAnimate actionWithAnimation:surprisedFace] retain]; 
+    
+    //Dizzy
+    NSMutableArray *dizzyFaceAnimFrames = [NSMutableArray array];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy2.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy2.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
+    CCAnimation *dizzyFace = [CCAnimation animationWithFrames:dizzyFaceAnimFrames delay:0.2f];
+    dizzyFaceAnimation_ = [[CCAnimate actionWithAnimation:dizzyFace] retain]; 
 }
 
 - (void) catHurt
@@ -145,6 +156,13 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [spriteEye_ stopAllActions];    
     [spriteEye_ runAction:surprisedFaceAnimation_];
 }
+
+- (void) catDizzy
+{
+    [spriteEye_ stopAllActions];
+    [spriteEye_ runAction:dizzyFaceAnimation_];
+}
+
 - (void) runWalkAction
 {
     [spriteBody_ stopAllActions];

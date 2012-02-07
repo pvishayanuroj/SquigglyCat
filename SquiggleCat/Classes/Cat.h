@@ -28,6 +28,8 @@
     
     CCAction *surprisedFaceAnimation_;
     
+    CCAction *dizzyFaceAnimation_;
+    
     CGRect boundingBox_;
     
     CGPoint moveTarget_;
@@ -66,6 +68,8 @@
 - (void) catHappy;
 
 - (void) catSurprised;
+
+- (void) catDizzy;
 
 
 @end
