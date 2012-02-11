@@ -9,6 +9,7 @@
 #import "MenuScene.h"
 #import "GameScene.h"
 #import "AnimatedButton.h"
+#import "ScoreScene.h"
 
 @implementation MenuScene
 
@@ -18,6 +19,8 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
 {
     if ((self = [super init])) {
 
+        [self authenticateLocalPlayer];
+        
 		CGSize size = [[CCDirector sharedDirector] winSize];        
         
         // Add background and title
@@ -75,13 +78,24 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
 
 - (void) showScores
 {
-    
+    ScoreScene *scoreScene = [ScoreScene node];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:scoreScene]];
 }
 
 - (void) startGame 
 {
     GameScene *gameScene = [GameScene node];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:gameScene]];
+}
+
+- (void) authenticateLocalPlayer
+{
+    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
+    [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
+        if (localPlayer.isAuthenticated) {
+            // Perform additional tasks for the authenticated player.
+        }
+    }];
 }
 
 @end

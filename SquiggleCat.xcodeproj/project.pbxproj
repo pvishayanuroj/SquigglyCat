@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		047F16C714DA407400C9F9E0 /* Menu Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C314DA407400C9F9E0 /* Menu Text.png */; };
-		047F16C814DA407400C9F9E0 /* Restart Text.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C414DA407400C9F9E0 /* Restart Text.png */; };
-		047F16C914DA407400C9F9E0 /* Victory Banner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */; };
-		047F16CA14DA407400C9F9E0 /* Victory Banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 047F16C614DA407400C9F9E0 /* Victory Banner.png */; };
 		047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */; };
+		04D331A714E6200300DD82D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D331A614E6200300DD82D4 /* GameKit.framework */; };
+		04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D331A914E625B400DD82D4 /* ScoreScene.m */; };
+		04D331AD14E62A1100DD82D4 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D331AC14E62A1000DD82D4 /* Score.m */; };
 		04E3097014D6385700685C10 /* HiScoresButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096614D6385700685C10 /* HiScoresButton-hd.png */; };
 		04E3097114D6385700685C10 /* HiScoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096714D6385700685C10 /* HiScoresButton.png */; };
 		04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096814D6385700685C10 /* HowToButton-hd.png */; };
@@ -165,12 +164,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		047F16C314DA407400C9F9E0 /* Menu Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Menu Text.png"; sourceTree = "<group>"; };
-		047F16C414DA407400C9F9E0 /* Restart Text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restart Text.png"; sourceTree = "<group>"; };
-		047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Victory Banner-hd.png"; sourceTree = "<group>"; };
-		047F16C614DA407400C9F9E0 /* Victory Banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Victory Banner.png"; sourceTree = "<group>"; };
 		047F16CC14DA419B00C9F9E0 /* EndGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EndGameLayer.h; path = Classes/EndGameLayer.h; sourceTree = "<group>"; };
 		047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EndGameLayer.m; path = Classes/EndGameLayer.m; sourceTree = "<group>"; };
+		04D331A614E6200300DD82D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		04D331A814E625B400DD82D4 /* ScoreScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreScene.h; path = Classes/ScoreScene.h; sourceTree = "<group>"; };
+		04D331A914E625B400DD82D4 /* ScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreScene.m; path = Classes/ScoreScene.m; sourceTree = "<group>"; };
+		04D331AB14E62A1000DD82D4 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = Classes/Score.h; sourceTree = "<group>"; };
+		04D331AC14E62A1000DD82D4 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = Classes/Score.m; sourceTree = "<group>"; };
 		04E3096614D6385700685C10 /* HiScoresButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiScoresButton-hd.png"; sourceTree = "<group>"; };
 		04E3096714D6385700685C10 /* HiScoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiScoresButton.png; sourceTree = "<group>"; };
 		04E3096814D6385700685C10 /* HowToButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HowToButton-hd.png"; sourceTree = "<group>"; };
@@ -465,6 +465,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D331A714E6200300DD82D4 /* GameKit.framework in Frameworks */,
 				04F7B06114D5FCC300F774C4 /* QuartzCore.framework in Frameworks */,
 				04F7B06314D5FCC300F774C4 /* OpenGLES.framework in Frameworks */,
 				04F7B06514D5FCC300F774C4 /* OpenAL.framework in Frameworks */,
@@ -527,6 +528,7 @@
 		04F7B05F14D5FCC300F774C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04D331A614E6200300DD82D4 /* GameKit.framework */,
 				04F7B06014D5FCC300F774C4 /* QuartzCore.framework */,
 				04F7B06214D5FCC300F774C4 /* OpenGLES.framework */,
 				04F7B06414D5FCC300F774C4 /* OpenAL.framework */,
@@ -555,6 +557,10 @@
 				04F7B1E714D5FD3500F774C4 /* GameScene.m */,
 				04E3098114D638AB00685C10 /* MenuScene.h */,
 				04E3098214D638AB00685C10 /* MenuScene.m */,
+				04D331A814E625B400DD82D4 /* ScoreScene.h */,
+				04D331A914E625B400DD82D4 /* ScoreScene.m */,
+				04D331AB14E62A1000DD82D4 /* Score.h */,
+				04D331AC14E62A1000DD82D4 /* Score.m */,
 				04F7B1E814D5FD3500F774C4 /* Item.h */,
 				04F7B1E914D5FD3500F774C4 /* Item.m */,
 				04F7B1EA14D5FD3500F774C4 /* ItemDelegate.h */,
@@ -908,10 +914,6 @@
 				5203A6C314E00FAD0011B5C9 /* ScoreResults.png */,
 				5203A6BA14E00F800011B5C9 /* SquigeeHeader-hd.png */,
 				5203A6BB14E00F800011B5C9 /* SquigeeHeader.png */,
-				047F16C314DA407400C9F9E0 /* Menu Text.png */,
-				047F16C414DA407400C9F9E0 /* Restart Text.png */,
-				047F16C514DA407400C9F9E0 /* Victory Banner-hd.png */,
-				047F16C614DA407400C9F9E0 /* Victory Banner.png */,
 				04E3096614D6385700685C10 /* HiScoresButton-hd.png */,
 				04E3096714D6385700685C10 /* HiScoresButton.png */,
 				04E3096814D6385700685C10 /* HowToButton-hd.png */,
@@ -1035,10 +1037,6 @@
 				04E3097814D6385700685C10 /* StartButton-hd.png in Resources */,
 				04E3097914D6385700685C10 /* StartButton.png in Resources */,
 				04E3098014D6386500685C10 /* Default@2x.png in Resources */,
-				047F16C714DA407400C9F9E0 /* Menu Text.png in Resources */,
-				047F16C814DA407400C9F9E0 /* Restart Text.png in Resources */,
-				047F16C914DA407400C9F9E0 /* Victory Banner-hd.png in Resources */,
-				047F16CA14DA407400C9F9E0 /* Victory Banner.png in Resources */,
 				5203A6B814E00E780011B5C9 /* SquigglyWhite.fnt in Resources */,
 				5203A6B914E00E780011B5C9 /* SquigglyWhite.png in Resources */,
 				5203A6BC14E00F800011B5C9 /* SquigeeHeader-hd.png in Resources */,
@@ -1173,6 +1171,8 @@
 				04E3098614D6391500685C10 /* AnimatedButton.m in Sources */,
 				04E3099314D7ACC800685C10 /* IncrementingText.m in Sources */,
 				047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */,
+				04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */,
+				04D331AD14E62A1100DD82D4 /* Score.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1227,6 +1227,7 @@
 				INFOPLIST_FILE = SquiggleCat/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1242,6 +1243,7 @@
 				INFOPLIST_FILE = SquiggleCat/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

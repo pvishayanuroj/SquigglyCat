@@ -13,14 +13,14 @@
 
 @implementation EndGameLayer
 
-static const CGFloat BANNER_X = 160.0f;
-static const CGFloat BANNER_Y = 240.0f;
-static const CGFloat MENU_X = 180.0f;
-static const CGFloat MENU_Y = 320.0f;
-static const CGFloat RESTART_X = 180.0f;
-static const CGFloat RESTART_Y = 260.0f;
-static const CGFloat SCORE_X = 160.0f;
-static const CGFloat SCORE_Y = 420.0f;
+static const CGFloat EG_BANNER_X = 160.0f;
+static const CGFloat EG_BANNER_Y = 240.0f;
+static const CGFloat EG_MENU_X = 180.0f;
+static const CGFloat EG_MENU_Y = 320.0f;
+static const CGFloat EG_RESTART_X = 180.0f;
+static const CGFloat EG_RESTART_Y = 260.0f;
+static const CGFloat EG_SCORE_X = 160.0f;
+static const CGFloat EG_SCORE_Y = 420.0f;
 
 + (id) endGameLayer:(NSInteger)score
 {
@@ -32,19 +32,19 @@ static const CGFloat SCORE_Y = 420.0f;
     if ((self = [super init])) {
         
         CCSprite *banner = [CCSprite spriteWithFile:@"ScoreResults.png"];
-        banner.position = ccp(BANNER_X, BANNER_Y);
+        banner.position = ccp(EG_BANNER_X, EG_BANNER_Y);
         [self addChild:banner];
         
         AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"Menu-Button.png" target:self selector:@selector(mainMenu)];
         AnimatedButton *restartButton = [AnimatedButton buttonWithImage:@"Replay-Button.png" target:self selector:@selector(restart)];  
-        menuButton.position = ccp(MENU_X, MENU_Y);
-        restartButton.position = ccp(RESTART_X, RESTART_Y);
+        menuButton.position = ccp(EG_MENU_X, EG_MENU_Y);
+        restartButton.position = ccp(EG_RESTART_X, EG_RESTART_Y);
         [self addChild:menuButton];
         [self addChild:restartButton];
         
         NSString *scoreText = [NSString stringWithFormat:@"%d", score];
         CCLabelBMFont *score = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"];
-        score.position = ccp(SCORE_X, SCORE_Y);
+        score.position = ccp(EG_SCORE_X, EG_SCORE_Y);
         [self addChild:score];
     }
     return self;

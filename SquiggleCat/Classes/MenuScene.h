@@ -9,6 +9,7 @@
 #import "CommonHeaders.h"
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import <GameKit/GameKit.h>
 
 @class AnimatedButton;
 
@@ -17,5 +18,7 @@
     AnimatedButton *instructions_;
     
 }
+
+- (void) authenticateLocalPlayer;
 
 @end
