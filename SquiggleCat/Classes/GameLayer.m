@@ -253,6 +253,8 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 
 - (void) endLevel
 {
+    [cat_ stopAllActions];
+    
     [self unschedule:@selector(spawnLoop:)];
     [self unschedule:@selector(collisionLoop:)];
     [self unschedule:@selector(timerLoop:)];
