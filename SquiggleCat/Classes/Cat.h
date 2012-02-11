@@ -9,6 +9,7 @@
 #import "CommonHeaders.h"
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "SimpleAudioEngine.h"
 
 @interface Cat : CCNode {
 
@@ -47,6 +48,8 @@
 - (void) initAnimations;
 
 - (void) runTailAnimation;
+
+- (void) runShaking;
 
 - (void) catBreathing;
 

@@ -19,6 +19,7 @@
 #import "MenuScene.h"
 #import "IncrementingText.h"
 #import "GameScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameLayer
 
@@ -26,7 +27,7 @@ static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 2.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
-static const NSInteger GL_LEVEL_TIME = 30;
+static const NSInteger GL_LEVEL_TIME = 20;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -76,6 +77,17 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         
         // Initialize data storage
         items_ = [[NSMutableArray array] retain];
+        
+        // Initilaize bg music
+        SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
+        if (sae != nil) {
+            [sae preloadBackgroundMusic:@"Roadtrip Long.caf"];
+            if (sae.willPlayBackgroundMusic) {
+                sae.backgroundMusicVolume = 0.25f;
+            }
+        }
+        
+        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Roadtrip Long.caf"];//play background music
         
         // Initialize loops
         [self schedule:@selector(collisionLoop:) interval:GL_COLLISION_LOOP_SPEED];
@@ -159,11 +171,18 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     timer_--;
     if (timer_ < 0) {
+        [[SimpleAudioEngine sharedEngine] playEffect:@"Whistle 1.caf"];  
         [self endLevel];
     }
     else {
         [timerLabel_ setString:[NSString stringWithFormat:@"%d", timer_]];
     }
+    if (timer_ == 10){
+        //Play clock tick when there's 10 seconds left!
+        [[SimpleAudioEngine sharedEngine] playEffect:@"clock.wav"];  
+        NSLog(@"Tick Tock!");
+    }
+    
 }
 
 #pragma mark - Delegate Methods
@@ -174,7 +193,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     if (itemType == kItemFish) {
         scoreText_.score += 100;
     }
-    else if (itemType == kItemTeddyBear || itemType == kItemTrashCan) {
+    else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
         [self freezeCat];
     }
     

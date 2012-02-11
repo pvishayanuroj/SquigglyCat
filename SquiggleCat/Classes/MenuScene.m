@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "AnimatedButton.h"
 #import "ScoreScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation MenuScene
 
@@ -67,6 +68,7 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
     CGSize size = [[CCDirector sharedDirector] winSize];
     id moveIn = [CCMoveTo actionWithDuration:MS_INSTRUCTION_MOVE_SPEED position:ccp(size.width / 2, size.height / 2)];
 	[instructions_ runAction:moveIn];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
 }
 
 - (void) hideInstructions 
@@ -74,18 +76,21 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
     CGSize size = [[CCDirector sharedDirector] winSize];
     id moveIn = [CCMoveTo actionWithDuration:MS_INSTRUCTION_MOVE_SPEED position:ccp(640.0f, size.height / 2)];
 	[instructions_ runAction:moveIn];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
 }
 
 - (void) showScores
 {
     ScoreScene *scoreScene = [ScoreScene node];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:scoreScene]];
+        [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionPageTurn transitionWithDuration:0.5f scene:scoreScene]];
 }
 
 - (void) startGame 
 {
     GameScene *gameScene = [GameScene node];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:gameScene]];
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInB transitionWithDuration:0.5f scene:gameScene]];
 }
 
 - (void) authenticateLocalPlayer

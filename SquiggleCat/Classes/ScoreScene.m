@@ -10,6 +10,7 @@
 #import "Score.h"
 #import "AnimatedButton.h"
 #import "MenuScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation ScoreScene
 
@@ -83,7 +84,8 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 - (void) mainMenu
 {
     MenuScene *menuScene = [MenuScene node];
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:menuScene]];    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionPageTurn transitionWithDuration:0.5f scene:menuScene]];    
 }
 
 

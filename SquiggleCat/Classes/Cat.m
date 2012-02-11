@@ -194,7 +194,9 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     // Ensure that delay is equal to animation time
     id delay = [CCDelayTime actionWithDuration:1.0f];
     id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
-    [self runAction:[CCSequence actions:delay, done, nil]];    
+    [self runAction:[CCSequence actions:delay, done, nil]]; 
+    
+    [[SimpleAudioEngine sharedEngine] playEffect:@"birdchirps.wav"];
 }
 
 - (void) runWalkAction
@@ -232,22 +234,26 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         case kItemFish:
             [self fatten];
             [self runHappyAnimation];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"points.wav"];
             break;
         // Milk speeds up the cat and makes it happy
         case kItemMilk:
             velocity_ += CAT_VELOCITY_INCREASE;
-            [self runHappyAnimation];            
+            [self runHappyAnimation];  
+            [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-slurp.wav"];
             break;
         // Trash can runs hurt animation, freezes cat
         case kItemTrashCan:
             [self stopAllActions];
             [self runHurtAnimation];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"bump.caf"];
             break;
         // Litter box resets cat velocity, slims it down, and makes it happy
         case kItemLitterBox:
             velocity_ = CAT_VELOCITY;
-            [self slim];    
-            [self runHappyAnimation];                        
+            [self slim];
+            [self runHappyAnimation];
+            [[SimpleAudioEngine sharedEngine] playEffect:@"litterbox.caf"];
             break;
         // Teddy bear runs surprised animation
         case kItemTeddyBear:
