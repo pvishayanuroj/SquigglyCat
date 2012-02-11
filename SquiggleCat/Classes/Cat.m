@@ -22,6 +22,7 @@ static const CGFloat CAT_BB_TAIL_SPEED = 0.3f;
 static const CGFloat CAT_BB_TAIL_ANGLE = 10.0f;
 
 static const CGFloat CAT_VELOCITY = 480.0f/3.0f;
+static const CGFloat CAT_VELOCITY_INCREASE = 20.0f;
 
 static const CGFloat CAT_MAX_SIZE = 1.3f;
 static const CGFloat CAT_GROWTH_RATE = 0.1f;
@@ -31,7 +32,6 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
 @synthesize boundingBox = boundingBox_;
 @synthesize moveTarget = moveTarget_;
-@synthesize catVelocity;
 
 + (id) cat
 {
@@ -62,7 +62,7 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         [self runTailAnimation];
         [self catBreathing];
         
-        catVelocity = CAT_VELOCITY;
+        velocity_ = CAT_VELOCITY;
         
         moveTarget_ = self.position;
         //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED]; 
@@ -137,36 +137,76 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     dizzyFaceAnimation_ = [[CCAnimate actionWithAnimation:dizzyFace] retain]; 
 }
 
-- (void) catHurt
+- (void) resetIdleFrame
 {
     [spriteEye_ stopAllActions];
-    [spriteEye_ runAction:hurtFaceAnimation_];
+    [spriteBody_ stopAllActions];    
+    
+    NSString *spriteEyeFrameName = [NSString stringWithFormat:@"SquigeeFace_idle.png"];
+    [spriteEye_ setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteEyeFrameName]];
+    
+    NSString *spriteBodyFrameName = [NSString stringWithFormat:@"Squigee_normal.png"];
+    [spriteBody_ setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteBodyFrameName]];    
 }
 
-- (void) catHappy
+- (void) runHurtAnimation
+{
+    [spriteEye_ stopAllActions];
+    [spriteEye_ runAction:hurtFaceAnimation_];    
+}
+
+- (void) doneHurt
+{
+    [spriteEye_ stopAllActions];        
+}
+
+- (void) runHappyAnimation
 {
     [spriteEye_ stopAllActions];
     [spriteBody_ stopAllActions];
     [spriteEye_ runAction:happyFaceAnimation_];
-    [spriteBody_ runAction:earFlapAnimation_];
+    [spriteBody_ runAction:earFlapAnimation_];    
+    
+    // Ensure that delay is equal to animation time
+    id delay = [CCDelayTime actionWithDuration:1.0f];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
+    [self runAction:[CCSequence actions:delay, done, nil]];
 }
 
-- (void) catSurprised
-{
-    [spriteEye_ stopAllActions];    
-    [spriteEye_ runAction:surprisedFaceAnimation_];
-}
-
-- (void) catDizzy
+- (void) runSurprisedAnimation
 {
     [spriteEye_ stopAllActions];
-    [spriteEye_ runAction:dizzyFaceAnimation_];
+    [spriteBody_ stopAllActions];
+    [spriteEye_ runAction:surprisedFaceAnimation_];    
+    
+    // Ensure that delay is equal to animation time
+    id delay = [CCDelayTime actionWithDuration:1.0f];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
+    [self runAction:[CCSequence actions:delay, done, nil]];    
+}
+
+- (void) runDizzyAnimation
+{
+    [spriteEye_ stopAllActions];
+    [spriteBody_ stopAllActions];
+    [spriteEye_ runAction:dizzyFaceAnimation_];    
+    
+    // Ensure that delay is equal to animation time
+    id delay = [CCDelayTime actionWithDuration:1.0f];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
+    [self runAction:[CCSequence actions:delay, done, nil]];    
 }
 
 - (void) runWalkAction
 {
+    [spriteEye_ stopAllActions];
     [spriteBody_ stopAllActions];
     [spriteBody_ runAction:walkAnimation_];
+}
+
+- (void) doneWalking
+{
+    [spriteBody_ stopAllActions];
 }
 
 - (void) runTailAnimation
@@ -185,12 +225,45 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [spriteEye_ runAction:repeat];
 }
 
+- (void) catCollide:(ItemType)itemType
+{
+    switch (itemType) {
+        // Fish fattens cat and makes it happy
+        case kItemFish:
+            [self fatten];
+            [self runHappyAnimation];
+            break;
+        // Milk speeds up the cat and makes it happy
+        case kItemMilk:
+            velocity_ += CAT_VELOCITY_INCREASE;
+            [self runHappyAnimation];            
+            break;
+        // Trash can runs hurt animation, freezes cat
+        case kItemTrashCan:
+            [self stopAllActions];
+            [self runHurtAnimation];
+            break;
+        // Litter box resets cat velocity, slims it down, and makes it happy
+        case kItemLitterBox:
+            velocity_ = CAT_VELOCITY;
+            [self slim];    
+            [self runHappyAnimation];                        
+            break;
+        // Teddy bear runs surprised animation
+        case kItemTeddyBear:
+            [self stopAllActions];            
+            [self runDizzyAnimation];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void) walkTo:(CGPoint)pos
 {
-    CGFloat velocity = catVelocity;
     CGPoint delta = ccpSub(pos, self.position);
     CGFloat distance = ccpLength(delta);
-    CGFloat moveDuration = distance / velocity;
+    CGFloat moveDuration = distance / velocity_;
     
     // Make sure sprite faces the correct direction
     spriteBody_.scaleX = delta.x < 0 ? -1 : 1;    
@@ -202,11 +275,6 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     id done = [CCCallFunc actionWithTarget:self selector:@selector(doneWalking)];
     [self runAction:[CCSequence actions:move, done, nil]];    
     [self runWalkAction];
-}
-
-- (void) doneWalking
-{
-    [spriteBody_ stopAllActions];
 }
 
 - (void) fatten

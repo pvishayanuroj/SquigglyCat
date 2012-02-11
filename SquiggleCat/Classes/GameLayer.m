@@ -36,6 +36,8 @@ static const CGFloat GL_TIMER_Y = 460.0f;
 static const CGFloat GL_CAT_START_X = 100.0f;
 static const CGFloat GL_CAT_START_Y = 200.0f;
 
+static const CGFloat GL_FREEZE_DURATION = 1.0f;
+
 #pragma mark - Object Lifecycle
 
 - (id) init
@@ -43,6 +45,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     if ((self = [super init])) {
         
         self.isTouchEnabled = YES;
+        isCatFrozen_ = NO;
         //clickEnabled_ = YES;
         
         // Initialize the grid data variables
@@ -167,31 +170,15 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
 
 - (void) itemCollided:(Item *)item
 {
-    switch (item.itemType) {
-        case kItemFish:
-            [cat_ fatten];
-            [cat_ catHappy];
-            scoreText_.score += 100;
-            break;
-        case kItemMilk:
-            cat_.catVelocity += 20;
-            [cat_ catHappy];
-            break;
-        case kItemTrashCan:
-            [cat_ catHurt];
-            break;
-        case kItemLitterBox:
-            [cat_ slim];
-            cat_.catVelocity = 480.0f/3.0f;
-            [cat_ catHappy];
-            break;
-        case kItemTeddyBear:
-            [cat_ catDizzy];
-            break;
-        default:
-            NSAssert(NO, @"Invalid item type for itemCollided");
-            break;
+    ItemType itemType = item.itemType;
+    if (itemType == kItemFish) {
+        scoreText_.score += 100;
     }
+    else if (itemType == kItemTeddyBear || itemType == kItemTrashCan) {
+        [self freezeCat];
+    }
+    
+    [cat_ catCollide:itemType];
 }
 
 #pragma mark - Touch Handlers
@@ -203,7 +190,7 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
 
 - (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    return YES;
+    return !isCatFrozen_;
 }
 
 - (void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -213,14 +200,16 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
 
 - (void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CGPoint touchLocation = [touch locationInView: [touch view]];		
-    touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    
-    [cat_ walkTo:touchLocation];
-    
-    //DebugPoint(@"move", touchLocation);
-    cat_.moveTarget = touchLocation;    
+    if (!isCatFrozen_) {
+        CGPoint touchLocation = [touch locationInView: [touch view]];		
+        touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+        touchLocation = [self convertToNodeSpace:touchLocation];
+        
+        [cat_ walkTo:touchLocation];
+        
+        //DebugPoint(@"move", touchLocation);
+        cat_.moveTarget = touchLocation;   
+    }
 }
 
 #pragma mark - Helper Methods
@@ -272,6 +261,19 @@ static const CGFloat GL_CAT_START_Y = 200.0f;
     
     GameScene *gameScene = (GameScene *)[[CCDirector sharedDirector] runningScene];
     [gameScene loadScoreScreen:scoreText_.score];
+}
+
+- (void) freezeCat
+{
+    isCatFrozen_ = YES;    
+    id delay = [CCDelayTime actionWithDuration:GL_FREEZE_DURATION];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(unfreezeCat)];
+    [self runAction:[CCSequence actions:delay, done, nil]];
+}
+
+- (void) unfreezeCat
+{
+    isCatFrozen_ = NO;
 }
 
 @end

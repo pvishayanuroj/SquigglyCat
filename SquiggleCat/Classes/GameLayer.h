@@ -35,6 +35,8 @@
     
     CGSize gridSize_;
     
+    BOOL isCatFrozen_;
+    
     BOOL clickEnabled_;
 }
 
@@ -43,5 +45,7 @@
 - (CGPoint) posFromGridPos:(Pair *)gridPos;
 
 - (void) endLevel;
+
+- (void) freezeCat;
 
 @end

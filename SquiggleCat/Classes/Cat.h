@@ -34,12 +34,11 @@
     
     CGPoint moveTarget_;
     
-    NSInteger catVelocity;
+    CGFloat velocity_;
 }
 
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) CGPoint moveTarget;
-@property (nonatomic) NSInteger catVelocity;
 
 + (id) cat;
 
@@ -51,7 +50,17 @@
 
 - (void) catBreathing;
 
+- (void) catCollide:(ItemType)itemType;
+
 - (void) runWalkAction;
+
+- (void) runHurtAnimation;
+
+- (void) runHappyAnimation;
+
+- (void) runSurprisedAnimation;
+
+- (void) runDizzyAnimation;
 
 - (CGRect) boundingBoxInWorldCoord;
 
@@ -62,14 +71,5 @@
 - (void) slim;
 
 - (void) moveTowards:(CGPoint)pos;
-
-- (void) catHurt;
-
-- (void) catHappy;
-
-- (void) catSurprised;
-
-- (void) catDizzy;
-
 
 @end
