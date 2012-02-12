@@ -20,6 +20,7 @@
 #import "IncrementingText.h"
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
+#import "AnimatedButton.h"
 
 @implementation GameLayer
 
@@ -27,7 +28,11 @@ static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 2.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
-static const NSInteger GL_LEVEL_TIME = 20;
+static const NSInteger GL_NUM_GRIDS_X = 6;
+static const NSInteger GL_NUM_GRIDS_Y = 8;
+static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
+static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
+static const NSInteger GL_LEVEL_TIME = 60;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -50,17 +55,24 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         //clickEnabled_ = YES;
         
         // Initialize the grid data variables
-        numGridsX_ = 6;
-        numGridsY_ = 8;
+        numGridsX_ = GL_NUM_USABLE_GRIDS_X;
+        numGridsY_ = GL_NUM_USABLE_GRIDS_Y;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        gridSize_ = CGSizeMake(winSize.width / numGridsX_, winSize.height / numGridsY_);
+        gridSize_ = CGSizeMake(winSize.width / GL_NUM_GRIDS_X, winSize.height / GL_NUM_GRIDS_Y);
         
         gridStatus_ = [[NSMutableSet set] retain];
+        
+        //I think the button is too small.. hard to tap, I think I'll draw up a new one
+        restartButton_ = [AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(restartButton)];
+
+        [self addChild:restartButton_ z:2];
+        [restartButton_ setPosition:ccp(290,455)];
+        
         
         // Initialize timer and score
         scoreText_ = [[IncrementingText incrementingText] retain];
         scoreText_.position = ccp(GL_SCORE_X, GL_SCORE_Y);
-//        highscoreLabel_.scale = 0.8f;
+        // highscoreLabel_.scale = 0.8f;
         [self addChild:scoreText_];
         
         timer_ = GL_LEVEL_TIME;
@@ -109,6 +121,14 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     return self;
 }
 
+- (void) restartButton
+{
+    //RESTART!!
+    //I added the code, then it crashes hahahaha
+    //Dude, can you make it such that the cat can't travel a certain threshold? e.g. The cat doesn't go to the black bar on top.
+    
+}
+
 - (void) dealloc
 {
     [gridStatus_ release];
@@ -116,6 +136,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     [cat_ release];
     [timerLabel_ release];
     [scoreText_ release];    
+    [restartButton_ release];
     
     [super dealloc];
 }
@@ -154,17 +175,49 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     for (NSUInteger i = 0; i < kNumItemTypes; ++i) {
         
-        // Generate a random coordinate
-        NSInteger x = arc4random() % numGridsX_;
-        NSInteger y = arc4random() % numGridsY_;        
-        Pair *coord = [Pair pair:x second:y];
-        
-        // If spot isn't already taken, add the item
-        if (![gridStatus_ containsObject:coord]) {
-            [gridStatus_ addObject:coord];
-            [self addItem:i gridPos:coord];
+        // For fish, force a spawn
+        if (i == kItemFish) {
+            
+            // Prevents an infinite loop
+            if ([gridStatus_ count] < numGridsX_ * numGridsY_) {
+                NSInteger x;
+                NSInteger y;
+                Pair *coord;
+                do {
+                    x = arc4random() % numGridsX_;
+                    y = arc4random() % numGridsY_;        
+                    coord = [Pair pair:x second:y];                    
+                }
+                while ([gridStatus_ containsObject:coord]);
+                
+                [gridStatus_ addObject:coord];
+                [self addItem:i gridPos:coord];                
+            }
+        }
+        else {
+            // Generate a random coordinate
+            NSInteger x = arc4random() % numGridsX_;
+            NSInteger y = arc4random() % numGridsY_;        
+            Pair *coord = [Pair pair:x second:y];
+            
+            // If spot isn't already taken, add the item
+            if (![gridStatus_ containsObject:coord]) {
+                [gridStatus_ addObject:coord];
+                [self addItem:i gridPos:coord];
+            }            
         }
     }
+    //Add Another Fish!!
+    // Generate a random coordinate
+    NSInteger x = arc4random() % numGridsX_;
+    NSInteger y = arc4random() % numGridsY_;        
+    Pair *coord = [Pair pair:x second:y];
+    
+    // If spot isn't already taken, add the item
+    if (![gridStatus_ containsObject:coord]) {
+        [gridStatus_ addObject:coord];
+        [self addItem:kItemFish gridPos:coord];
+    } 
 }
 
 - (void) timerLoop:(ccTime)dt
@@ -183,6 +236,14 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         NSLog(@"Tick Tock!");
     }
     
+    //Check if Cat's Milky Time meter is ON (i.e. > 0)
+    // each second Milky Time meter gets reduced and once it is equal to 0, MilkyTime ends
+    if (cat_.milkyTimeMeter_ > 0)
+        cat_.milkyTimeMeter_--;
+    if(cat_.milkyTimeMeter_ <=0)
+        [cat_ endMilkyTime];
+    
+    
 }
 
 #pragma mark - Delegate Methods
@@ -194,7 +255,10 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         scoreText_.score += 100;
     }
     else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
+        if(cat_.milkyTimeMeter_<=0){
+            //If MilkyTime meter is 0, then freeze cat
         [self freezeCat];
+        }
     }
     
     [cat_ catCollide:itemType];
@@ -239,6 +303,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     switch (itemType) {
         case kItemFish:
+            NSLog(@"Fish added");
             item = [Fish node];
             break;
         case kItemMilk:
@@ -267,7 +332,9 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 
 - (CGPoint) posFromGridPos:(Pair *)gridPos
 {
-    return CGPointMake(gridPos.x * gridSize_.width  - gridSize_.width / 2, gridPos.y * gridSize_.height - gridSize_.height / 2);
+    //return CGPointMake(gridPos.x * gridSize_.width  - gridSize_.width / 2, gridPos.y * gridSize_.height - gridSize_.height / 2);
+    // +1 offset to account for case where x and or y are 0
+    return CGPointMake((gridPos.x + 1) * gridSize_.width  - gridSize_.width / 2, (gridPos.y + 1) * gridSize_.height - gridSize_.height / 2);
 }
 
 - (void) endLevel

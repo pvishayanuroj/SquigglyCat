@@ -36,10 +36,17 @@
     CGPoint moveTarget_;
     
     CGFloat velocity_;
+    
+    CGFloat milkCombo_;
+    
+    CGFloat milkyTimeMeter_;
+    
+    CCParticleSystem *particle_;
 }
 
 @property (nonatomic, readonly) CGRect boundingBox;
 @property (nonatomic, assign) CGPoint moveTarget;
+@property (nonatomic) CGFloat milkyTimeMeter_;
 
 + (id) cat;
 
@@ -48,8 +55,6 @@
 - (void) initAnimations;
 
 - (void) runTailAnimation;
-
-- (void) runShaking;
 
 - (void) catBreathing;
 
@@ -64,6 +69,8 @@
 - (void) runSurprisedAnimation;
 
 - (void) runDizzyAnimation;
+
+- (void) endMilkyTime;
 
 - (CGRect) boundingBoxInWorldCoord;
 
