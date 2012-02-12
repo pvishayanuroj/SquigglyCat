@@ -27,7 +27,12 @@ static const CGFloat GL_COLLISION_LOOP_SPEED = 1.0f/60.0f;
 static const CGFloat GL_SPAWN_LOOP_SPEED = 2.0f;
 static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
-static const NSInteger GL_LEVEL_TIME = 20;
+static const NSInteger GL_NUM_GRIDS_X = 6;
+static const NSInteger GL_NUM_GRIDS_Y = 8;
+static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;
+static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
+
+static const NSInteger GL_LEVEL_TIME = 30;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -50,10 +55,10 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         //clickEnabled_ = YES;
         
         // Initialize the grid data variables
-        numGridsX_ = 6;
-        numGridsY_ = 8;
+        numGridsX_ = GL_NUM_USABLE_GRIDS_X;
+        numGridsY_ = GL_NUM_USABLE_GRIDS_Y;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
-        gridSize_ = CGSizeMake(winSize.width / numGridsX_, winSize.height / numGridsY_);
+        gridSize_ = CGSizeMake(winSize.width / GL_NUM_GRIDS_X, winSize.height / GL_NUM_GRIDS_Y);
         
         gridStatus_ = [[NSMutableSet set] retain];
         
@@ -154,15 +159,36 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     for (NSUInteger i = 0; i < kNumItemTypes; ++i) {
         
-        // Generate a random coordinate
-        NSInteger x = arc4random() % numGridsX_;
-        NSInteger y = arc4random() % numGridsY_;        
-        Pair *coord = [Pair pair:x second:y];
-        
-        // If spot isn't already taken, add the item
-        if (![gridStatus_ containsObject:coord]) {
-            [gridStatus_ addObject:coord];
-            [self addItem:i gridPos:coord];
+        // For fish, force a spawn
+        if (i == kItemFish) {
+            
+            // Prevents an infinite loop
+            if ([gridStatus_ count] < numGridsX_ * numGridsY_) {
+                NSInteger x;
+                NSInteger y;
+                Pair *coord;
+                do {
+                    x = arc4random() % numGridsX_;
+                    y = arc4random() % numGridsY_;        
+                    coord = [Pair pair:x second:y];                    
+                }
+                while ([gridStatus_ containsObject:coord]);
+                
+                [gridStatus_ addObject:coord];
+                [self addItem:i gridPos:coord];                
+            }
+        }
+        else {
+            // Generate a random coordinate
+            NSInteger x = arc4random() % numGridsX_;
+            NSInteger y = arc4random() % numGridsY_;        
+            Pair *coord = [Pair pair:x second:y];
+            
+            // If spot isn't already taken, add the item
+            if (![gridStatus_ containsObject:coord]) {
+                [gridStatus_ addObject:coord];
+                [self addItem:i gridPos:coord];
+            }            
         }
     }
 }
@@ -191,7 +217,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     ItemType itemType = item.itemType;
     if (itemType == kItemFish) {
-        scoreText_.score += 100;
+        scoreText_.score += 100;   
     }
     else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
         [self freezeCat];
@@ -239,6 +265,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     switch (itemType) {
         case kItemFish:
+            NSLog(@"FISH ADDED");
             item = [Fish node];
             break;
         case kItemMilk:
@@ -260,14 +287,15 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     item.delegate = self;
     item.gridPos = gridPos;
-    item.position = [self posFromGridPos:gridPos];
+    item.position = [self posFromGridPos:gridPos];    
     [items_ addObject:item];
     [self addChild:item z:0];
 }
 
 - (CGPoint) posFromGridPos:(Pair *)gridPos
 {
-    return CGPointMake(gridPos.x * gridSize_.width  - gridSize_.width / 2, gridPos.y * gridSize_.height - gridSize_.height / 2);
+    // +1 offset to account for case where x and or y are 0
+    return CGPointMake((gridPos.x + 1) * gridSize_.width  - gridSize_.width / 2, (gridPos.y + 1) * gridSize_.height - gridSize_.height / 2);
 }
 
 - (void) endLevel
