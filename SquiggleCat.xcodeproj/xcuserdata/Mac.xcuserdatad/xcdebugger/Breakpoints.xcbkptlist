@@ -28,7 +28,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "93"
          endingLineNumber = "93"
-         landmarkName = "-authenticateLocalPlayer"
+         landmarkName = "-startGame"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

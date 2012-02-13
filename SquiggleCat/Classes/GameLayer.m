@@ -30,9 +30,16 @@ static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
 static const NSInteger GL_NUM_GRIDS_X = 6;
 static const NSInteger GL_NUM_GRIDS_Y = 8;
+<<<<<<< HEAD
 static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
 static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
 static const NSInteger GL_LEVEL_TIME = 60;
+=======
+static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;
+static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
+
+static const NSInteger GL_LEVEL_TIME = 30;
+>>>>>>> 05bf07590475930c5d8ff7a1ca0c3ce0ae4f34e7
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -252,7 +259,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     ItemType itemType = item.itemType;
     if (itemType == kItemFish) {
-        scoreText_.score += 100;
+        scoreText_.score += 100;   
     }
     else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
         if(cat_.milkyTimeMeter_<=0){
@@ -303,7 +310,11 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     switch (itemType) {
         case kItemFish:
+<<<<<<< HEAD
             NSLog(@"Fish added");
+=======
+            NSLog(@"FISH ADDED");
+>>>>>>> 05bf07590475930c5d8ff7a1ca0c3ce0ae4f34e7
             item = [Fish node];
             break;
         case kItemMilk:
@@ -325,14 +336,17 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     item.delegate = self;
     item.gridPos = gridPos;
-    item.position = [self posFromGridPos:gridPos];
+    item.position = [self posFromGridPos:gridPos];    
     [items_ addObject:item];
     [self addChild:item z:0];
 }
 
 - (CGPoint) posFromGridPos:(Pair *)gridPos
 {
+<<<<<<< HEAD
     //return CGPointMake(gridPos.x * gridSize_.width  - gridSize_.width / 2, gridPos.y * gridSize_.height - gridSize_.height / 2);
+=======
+>>>>>>> 05bf07590475930c5d8ff7a1ca0c3ce0ae4f34e7
     // +1 offset to account for case where x and or y are 0
     return CGPointMake((gridPos.x + 1) * gridSize_.width  - gridSize_.width / 2, (gridPos.y + 1) * gridSize_.height - gridSize_.height / 2);
 }
