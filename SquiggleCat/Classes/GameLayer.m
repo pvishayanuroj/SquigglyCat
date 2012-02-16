@@ -265,7 +265,6 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     switch (itemType) {
         case kItemFish:
-            NSLog(@"FISH ADDED");
             item = [Fish node];
             break;
         case kItemMilk:

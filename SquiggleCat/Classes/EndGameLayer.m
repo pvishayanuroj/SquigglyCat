@@ -10,6 +10,7 @@
 #import "GameScene.h"
 #import "MenuScene.h"
 #import "AnimatedButton.h"
+#import "ScoreUtility.h"
 
 @implementation EndGameLayer
 
@@ -43,9 +44,14 @@ static const CGFloat EG_SCORE_Y = 420.0f;
         [self addChild:restartButton];
         
         NSString *scoreText = [NSString stringWithFormat:@"%d", score];
-        CCLabelBMFont *score = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"];
-        score.position = ccp(EG_SCORE_X, EG_SCORE_Y);
-        [self addChild:score];
+        CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"];
+        scoreLabel.position = ccp(EG_SCORE_X, EG_SCORE_Y);
+        [self addChild:scoreLabel];
+        
+        // If high score
+        if ([ScoreUtility checkAndSetLocalScore:score]) {
+            NSLog(@"high score!");
+        }
     }
     return self;
 }

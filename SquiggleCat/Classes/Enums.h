@@ -15,3 +15,5 @@ typedef enum {
     
     kNumItemTypes = 5
 } ItemType;
+
+#define NUM_HIGH_SCORES 10

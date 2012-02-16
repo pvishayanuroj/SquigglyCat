@@ -31,4 +31,6 @@
 
 - (void) unexpand;
 
+- (void) updateImage:(NSString *)imageFile;
+
 @end

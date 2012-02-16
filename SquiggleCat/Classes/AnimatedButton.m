@@ -115,5 +115,13 @@
     isExpanded_ = NO;
 }
 
+- (void) updateImage:(NSString *)imageFile
+{
+    [sprite_ removeFromParentAndCleanup:YES];
+    [sprite_ release];
+    
+    sprite_ = [[CCSprite spriteWithFile:imageFile] retain];
+    [self addChild:sprite_];
+}
 
 @end

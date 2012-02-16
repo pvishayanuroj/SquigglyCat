@@ -10,12 +10,23 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class AnimatedButton;
+
 @interface ScoreScene : CCScene {
     
+    NSMutableArray *labels_;
     
+    CCLabelBMFont *title_;
     
+    AnimatedButton *localButton_;
+    
+    AnimatedButton *globalButton_;
 }
 
-- (void) showHighScores:(NSArray *)scores;
+- (void) showHighScores:(NSArray *)scores showName:(BOOL)showName;
+
+- (void) localButton;
+
+- (void) globalButton;
 
 @end

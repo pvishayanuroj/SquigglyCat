@@ -151,6 +151,7 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
 - (void) runHurtAnimation
 {
+    [spriteBody_ stopAllActions];
     [spriteEye_ stopAllActions];
     [spriteEye_ runAction:hurtFaceAnimation_];    
 }

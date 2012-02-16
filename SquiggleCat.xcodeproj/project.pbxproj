@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042FCA5314EC85F700E34155 /* ScoreUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FCA5214EC85F700E34155 /* ScoreUtility.m */; };
+		042FCA5914ECA42800E34155 /* Global-Button-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5514ECA42800E34155 /* Global-Button-Selected.png */; };
+		042FCA5A14ECA42800E34155 /* Global-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5614ECA42800E34155 /* Global-Button.png */; };
+		042FCA5B14ECA42800E34155 /* Local-Button-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5714ECA42800E34155 /* Local-Button-Selected.png */; };
+		042FCA5C14ECA42800E34155 /* Local-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5814ECA42800E34155 /* Local-Button.png */; };
 		047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */; };
 		04D331A714E6200300DD82D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D331A614E6200300DD82D4 /* GameKit.framework */; };
 		04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D331A914E625B400DD82D4 /* ScoreScene.m */; };
@@ -176,6 +181,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042FCA5114EC85F600E34155 /* ScoreUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreUtility.h; path = Classes/ScoreUtility.h; sourceTree = "<group>"; };
+		042FCA5214EC85F700E34155 /* ScoreUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreUtility.m; path = Classes/ScoreUtility.m; sourceTree = "<group>"; };
+		042FCA5514ECA42800E34155 /* Global-Button-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Global-Button-Selected.png"; sourceTree = "<group>"; };
+		042FCA5614ECA42800E34155 /* Global-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Global-Button.png"; sourceTree = "<group>"; };
+		042FCA5714ECA42800E34155 /* Local-Button-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Local-Button-Selected.png"; sourceTree = "<group>"; };
+		042FCA5814ECA42800E34155 /* Local-Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Local-Button.png"; sourceTree = "<group>"; };
 		047F16CC14DA419B00C9F9E0 /* EndGameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EndGameLayer.h; path = Classes/EndGameLayer.h; sourceTree = "<group>"; };
 		047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EndGameLayer.m; path = Classes/EndGameLayer.m; sourceTree = "<group>"; };
 		04D331A614E6200300DD82D4 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
@@ -583,6 +594,8 @@
 				04E3098214D638AB00685C10 /* MenuScene.m */,
 				04D331A814E625B400DD82D4 /* ScoreScene.h */,
 				04D331A914E625B400DD82D4 /* ScoreScene.m */,
+				042FCA5114EC85F600E34155 /* ScoreUtility.h */,
+				042FCA5214EC85F700E34155 /* ScoreUtility.m */,
 				04D331AB14E62A1000DD82D4 /* Score.h */,
 				04D331AC14E62A1000DD82D4 /* Score.m */,
 				04F7B1E814D5FD3500F774C4 /* Item.h */,
@@ -931,6 +944,10 @@
 		04F7B1D114D5FD2300F774C4 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				042FCA5514ECA42800E34155 /* Global-Button-Selected.png */,
+				042FCA5614ECA42800E34155 /* Global-Button.png */,
+				042FCA5714ECA42800E34155 /* Local-Button-Selected.png */,
+				042FCA5814ECA42800E34155 /* Local-Button.png */,
 				5203A6BE14E00FAD0011B5C9 /* Menu-Button-hd.png */,
 				5203A6BF14E00FAD0011B5C9 /* Menu-Button.png */,
 				5203A6C014E00FAD0011B5C9 /* Replay-Button-hd.png */,
@@ -1105,6 +1122,10 @@
 				5294F3CD14E6B5EE002CAFC2 /* Whistle 1.caf in Resources */,
 				5294F3CF14E6B638002CAFC2 /* bump.caf in Resources */,
 				5294F3D114E6B7EE002CAFC2 /* Roadtrip Long.caf in Resources */,
+				042FCA5914ECA42800E34155 /* Global-Button-Selected.png in Resources */,
+				042FCA5A14ECA42800E34155 /* Global-Button.png in Resources */,
+				042FCA5B14ECA42800E34155 /* Local-Button-Selected.png in Resources */,
+				042FCA5C14ECA42800E34155 /* Local-Button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,6 +1250,7 @@
 				047F16CE14DA419B00C9F9E0 /* EndGameLayer.m in Sources */,
 				04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */,
 				04D331AD14E62A1100DD82D4 /* Score.m in Sources */,
+				042FCA5314EC85F700E34155 /* ScoreUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
