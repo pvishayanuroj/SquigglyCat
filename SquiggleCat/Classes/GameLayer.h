@@ -14,6 +14,7 @@
 @class Cat;
 @class Pair;
 @class IncrementingText;
+@class AnimatedButton;
 
 @interface GameLayer : CCLayer <ItemDelegate> {
     
@@ -38,6 +39,8 @@
     BOOL isCatFrozen_;
     
     BOOL clickEnabled_;
+    
+    AnimatedButton *restartButton_;
 }
 
 - (void) addItem:(ItemType)itemType gridPos:(Pair *)gridPos;

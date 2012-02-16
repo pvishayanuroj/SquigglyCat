@@ -9,6 +9,7 @@
 #import "Cat.h"
 #import "Utility.h"
 
+
 @implementation Cat
 
 static const CGFloat CAT_LOOP_SPEED = 1.0f/60.0f;
@@ -30,8 +31,14 @@ static const CGFloat CAT_GROWTH_RATE = 0.1f;
 static const CGFloat CAT_MIN_SIZE = 1.0f;
 static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
+static const CGFloat MILK_COMBO_COUNTER = 0.0f; //Milky Time Counter
+static const CGFloat MILKY_TIME_COMBO_TRIGGER = 2.0f; //How much Milk to trigger MilkyTime
+static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
+
+
 @synthesize boundingBox = boundingBox_;
 @synthesize moveTarget = moveTarget_;
+@synthesize milkyTimeMeter_;
 
 + (id) cat
 {
@@ -63,6 +70,38 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
         [self catBreathing];
         
         velocity_ = CAT_VELOCITY;
+        milkCombo_ = MILK_COMBO_COUNTER;
+        milkyTimeMeter_ = 0; // 0 - Flag Off; 1 - Flag On.
+        
+        //Particle
+        particle_=[[[CCParticleSystemQuad alloc] initWithTotalParticles:100] retain];
+        
+        CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"squigeex.png"];
+        particle_.texture=texture;
+        particle_.emissionRate=50;
+        particle_.angle=10.0;
+        particle_.angleVar=360.0;
+        particle_.duration =-1.00;
+        particle_.emitterMode=kCCParticleModeGravity;
+        ccColor4F startColor={1.00,0.60,0.30,1.00};
+        particle_.startColor=startColor;
+        ccColor4F endColor={0.60,0.90,0.20,0.80};
+        ccColor4F startColorVar = {0.00, 0.00, 0.00, 1.00};
+        ccColor4F endColorVar = {0.00, 0.00, 0.00, 0.00};
+        particle_.endColor=endColor;
+        particle_.startColorVar=startColorVar;
+        particle_.endColorVar=endColorVar;
+        particle_.startSize=40.00;
+        particle_.endSize=2.00;
+        particle_.startSizeVar=10.00;
+        particle_.endSizeVar=10.00;
+        particle_.gravity=ccp(0,50);
+        particle_.radialAccel=-120.00;
+        particle_.speed=80;
+        particle_.life=0.00;
+        [self addChild:particle_ z:-4];
+        [self runHappyAnimation];
+
         
         moveTarget_ = self.position;
         //[self schedule:@selector(moveLoop:) interval:CAT_LOOP_SPEED]; 
@@ -82,6 +121,7 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [hurtFaceAnimation_ release];
     [happyFaceAnimation_ release];
     [surprisedFaceAnimation_ release];
+    [particle_ release];
 
     [super dealloc];
 }
@@ -200,6 +240,23 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
     [[SimpleAudioEngine sharedEngine] playEffect:@"birdchirps.wav"];
 }
 
+- (void) runJumpAnimation
+{
+    [self runAction:[CCJumpBy actionWithDuration:0.5f position:ccp(0,0) height:20 jumps:1]];
+}
+
+- (void) startMilkyTime
+{
+    particle_.life = 1;
+    milkyTimeMeter_ = MAX_MILKY_TIME_METER;
+}
+
+- (void) endMilkyTime
+{
+    milkyTimeMeter_ = 0; //reset Milky Time Meter
+    particle_.life = 0;
+}
+
 - (void) runWalkAction
 {
     [spriteEye_ stopAllActions];
@@ -239,14 +296,25 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
             break;
         // Milk speeds up the cat and makes it happy
         case kItemMilk:
-            velocity_ += CAT_VELOCITY_INCREASE;
-            [self runHappyAnimation];  
-            [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-slurp.wav"];
+            if(milkCombo_ >= MILKY_TIME_COMBO_TRIGGER){
+                [self runJumpAnimation];
+                [self startMilkyTime];
+                [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-squiggy.wav"];
+                milkCombo_ = 0.0f; //reset combo meter
+            }
+            else {
+                [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-slurp.wav"];
+                velocity_ += CAT_VELOCITY_INCREASE;
+                [self runHappyAnimation];  
+                milkCombo_++; //increase combo meter
+            }
             break;
         // Trash can runs hurt animation, freezes cat
         case kItemTrashCan:
-            [self stopAllActions];
-            [self runHurtAnimation];
+            if(milkyTimeMeter_<1){
+                [self stopAllActions];
+                [self runHurtAnimation];
+            }
             [[SimpleAudioEngine sharedEngine] playEffect:@"bump.caf"];
             break;
         // Litter box resets cat velocity, slims it down, and makes it happy
@@ -258,8 +326,10 @@ static const CGFloat CAT_SHRINK_RATE = 0.1f;
             break;
         // Teddy bear runs surprised animation
         case kItemTeddyBear:
-            [self stopAllActions];            
-            [self runDizzyAnimation];
+            if(milkyTimeMeter_ <1){
+                [self stopAllActions];            
+                [self runDizzyAnimation];
+            }
             break;
         default:
             break;

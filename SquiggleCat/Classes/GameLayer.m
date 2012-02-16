@@ -20,6 +20,7 @@
 #import "IncrementingText.h"
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
+#import "AnimatedButton.h"
 
 @implementation GameLayer
 
@@ -29,10 +30,10 @@ static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 
 static const NSInteger GL_NUM_GRIDS_X = 6;
 static const NSInteger GL_NUM_GRIDS_Y = 8;
-static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;
-static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
 
-static const NSInteger GL_LEVEL_TIME = 30;
+static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
+static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
+static const NSInteger GL_LEVEL_TIME = 60;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -56,16 +57,24 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         
         // Initialize the grid data variables
         numGridsX_ = GL_NUM_USABLE_GRIDS_X;
+
         numGridsY_ = GL_NUM_USABLE_GRIDS_Y;
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         gridSize_ = CGSizeMake(winSize.width / GL_NUM_GRIDS_X, winSize.height / GL_NUM_GRIDS_Y);
         
         gridStatus_ = [[NSMutableSet set] retain];
         
+        //I think the button is too small.. hard to tap, I think I'll draw up a new one
+        restartButton_ = [AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(restartButton)];
+
+        [self addChild:restartButton_ z:2];
+        [restartButton_ setPosition:ccp(290,455)];
+        
+        
         // Initialize timer and score
         scoreText_ = [[IncrementingText incrementingText] retain];
         scoreText_.position = ccp(GL_SCORE_X, GL_SCORE_Y);
-//        highscoreLabel_.scale = 0.8f;
+        // highscoreLabel_.scale = 0.8f;
         [self addChild:scoreText_];
         
         timer_ = GL_LEVEL_TIME;
@@ -114,6 +123,14 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     return self;
 }
 
+- (void) restartButton
+{
+    //RESTART!!
+    //I added the code, then it crashes hahahaha
+    //Dude, can you make it such that the cat can't travel a certain threshold? e.g. The cat doesn't go to the black bar on top.
+    
+}
+
 - (void) dealloc
 {
     [gridStatus_ release];
@@ -121,6 +138,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     [cat_ release];
     [timerLabel_ release];
     [scoreText_ release];    
+    [restartButton_ release];
     
     [super dealloc];
 }
@@ -191,6 +209,17 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
             }            
         }
     }
+    //Add Another Fish!!
+    // Generate a random coordinate
+    NSInteger x = arc4random() % numGridsX_;
+    NSInteger y = arc4random() % numGridsY_;        
+    Pair *coord = [Pair pair:x second:y];
+    
+    // If spot isn't already taken, add the item
+    if (![gridStatus_ containsObject:coord]) {
+        [gridStatus_ addObject:coord];
+        [self addItem:kItemFish gridPos:coord];
+    } 
 }
 
 - (void) timerLoop:(ccTime)dt
@@ -209,6 +238,14 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         NSLog(@"Tick Tock!");
     }
     
+    //Check if Cat's Milky Time meter is ON (i.e. > 0)
+    // each second Milky Time meter gets reduced and once it is equal to 0, MilkyTime ends
+    if (cat_.milkyTimeMeter_ > 0)
+        cat_.milkyTimeMeter_--;
+    if(cat_.milkyTimeMeter_ <=0)
+        [cat_ endMilkyTime];
+    
+    
 }
 
 #pragma mark - Delegate Methods
@@ -220,7 +257,10 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         scoreText_.score += 100;   
     }
     else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
+        if(cat_.milkyTimeMeter_<=0){
+            //If MilkyTime meter is 0, then freeze cat
         [self freezeCat];
+        }
     }
     
     [cat_ catCollide:itemType];
@@ -265,6 +305,11 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     switch (itemType) {
         case kItemFish:
+<<<<<<< HEAD
+=======
+
+            NSLog(@"Fish added");
+>>>>>>> 5d779ca24fe9d295450df06b8384e63109e16c27
             item = [Fish node];
             break;
         case kItemMilk:
