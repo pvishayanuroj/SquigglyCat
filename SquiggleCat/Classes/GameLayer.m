@@ -31,6 +31,8 @@ static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 static const NSInteger GL_NUM_GRIDS_X = 6;
 static const NSInteger GL_NUM_GRIDS_Y = 8;
 
+static const CGFloat GL_BOUNDARY_Y = 420.0f;
+
 static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
 static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
 static const NSInteger GL_LEVEL_TIME = 60;
@@ -290,8 +292,12 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
         touchLocation = [self convertToNodeSpace:touchLocation];
         
-        [cat_ walkTo:touchLocation];
+        // Do not let the player move into the empty space
+        if (touchLocation.y > GL_BOUNDARY_Y) {
+            touchLocation.y = GL_BOUNDARY_Y;
+        }
         
+        [cat_ walkTo:touchLocation];            
         //DebugPoint(@"move", touchLocation);
         cat_.moveTarget = touchLocation;   
     }
