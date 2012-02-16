@@ -74,7 +74,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         milkyTimeMeter_ = 0; // 0 - Flag Off; 1 - Flag On.
         
         //Particle
-        particle_=[[[CCParticleSystemQuad alloc] initWithTotalParticles:100] retain];
+        particle_= [[CCParticleSystemQuad alloc] initWithTotalParticles:100];
         
         CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"squigeex.png"];
         particle_.texture=texture;

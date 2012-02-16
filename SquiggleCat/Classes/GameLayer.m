@@ -65,7 +65,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         gridStatus_ = [[NSMutableSet set] retain];
         
         //I think the button is too small.. hard to tap, I think I'll draw up a new one
-        restartButton_ = [AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(restartButton)];
+        restartButton_ = [[AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(restartButton)] retain];
 
         [self addChild:restartButton_ z:2];
         [restartButton_ setPosition:ccp(290,455)];
