@@ -21,6 +21,7 @@
 #import "GameScene.h"
 #import "SimpleAudioEngine.h"
 #import "AnimatedButton.h"
+#import "CCNode+PauseResume.h"
 
 @implementation GameLayer
 
@@ -67,10 +68,10 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         gridStatus_ = [[NSMutableSet set] retain];
         
         //I think the button is too small.. hard to tap, I think I'll draw up a new one
-        restartButton_ = [[AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(restartButton)] retain];
+        pauseButton_ = [[AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(pauseGame)] retain];
 
-        [self addChild:restartButton_ z:2];
-        [restartButton_ setPosition:ccp(290,455)];
+        [self addChild:pauseButton_ z:2];
+        [pauseButton_ setPosition:ccp(290,455)];
         
         
         // Initialize timer and score
@@ -125,14 +126,6 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     return self;
 }
 
-- (void) restartButton
-{
-    //RESTART!!
-    //I added the code, then it crashes hahahaha
-    //Dude, can you make it such that the cat can't travel a certain threshold? e.g. The cat doesn't go to the black bar on top.
-    
-}
-
 - (void) dealloc
 {
     [gridStatus_ release];
@@ -140,7 +133,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     [cat_ release];
     [timerLabel_ release];
     [scoreText_ release];    
-    [restartButton_ release];
+    [pauseButton_ release];
     
     [super dealloc];
 }
@@ -277,7 +270,18 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 
 - (BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    return !isCatFrozen_;
+    if (!isCatFrozen_) {
+        CGPoint touchLocation = [touch locationInView: [touch view]];		
+        touchLocation = [[CCDirector sharedDirector] convertToGL: touchLocation];
+        touchLocation = [self convertToNodeSpace:touchLocation];
+        
+        // Do not let the player move into the empty space
+        if (touchLocation.y > GL_BOUNDARY_Y) {
+            return NO;
+        }        
+        return YES;
+    }
+    return NO;
 }
 
 - (void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -355,6 +359,21 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     
     GameScene *gameScene = (GameScene *)[[CCDirector sharedDirector] runningScene];
     [gameScene loadScoreScreen:scoreText_.score];
+}
+
+- (void) pauseGame
+{
+    [self pauseHierarchy];
+    isCatFrozen_ = YES;
+    
+    GameScene *gameScene = (GameScene *)[[CCDirector sharedDirector] runningScene];
+    [gameScene loadPauseScreen];
+}
+
+- (void) resumeGame
+{
+    [self resumeHierarchy];
+    isCatFrozen_ = NO;
 }
 
 - (void) freezeCat

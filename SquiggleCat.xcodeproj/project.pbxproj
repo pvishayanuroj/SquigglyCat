@@ -34,6 +34,8 @@
 		04D331A714E6200300DD82D4 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D331A614E6200300DD82D4 /* GameKit.framework */; };
 		04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D331A914E625B400DD82D4 /* ScoreScene.m */; };
 		04D331AD14E62A1100DD82D4 /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D331AC14E62A1000DD82D4 /* Score.m */; };
+		04DE522E14FA702F00F8E45C /* PauseLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE522D14FA702E00F8E45C /* PauseLayer.m */; };
+		04DE523214FA763800F8E45C /* CCNode+PauseResume.m in Sources */ = {isa = PBXBuildFile; fileRef = 04DE523114FA763800F8E45C /* CCNode+PauseResume.m */; };
 		04E3097014D6385700685C10 /* HiScoresButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096614D6385700685C10 /* HiScoresButton-hd.png */; };
 		04E3097114D6385700685C10 /* HiScoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096714D6385700685C10 /* HiScoresButton.png */; };
 		04E3097214D6385700685C10 /* HowToButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 04E3096814D6385700685C10 /* HowToButton-hd.png */; };
@@ -230,6 +232,10 @@
 		04D331A914E625B400DD82D4 /* ScoreScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreScene.m; path = Classes/ScoreScene.m; sourceTree = "<group>"; };
 		04D331AB14E62A1000DD82D4 /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Score.h; path = Classes/Score.h; sourceTree = "<group>"; };
 		04D331AC14E62A1000DD82D4 /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Score.m; path = Classes/Score.m; sourceTree = "<group>"; };
+		04DE522C14FA702E00F8E45C /* PauseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PauseLayer.h; path = Classes/PauseLayer.h; sourceTree = "<group>"; };
+		04DE522D14FA702E00F8E45C /* PauseLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PauseLayer.m; path = Classes/PauseLayer.m; sourceTree = "<group>"; };
+		04DE523014FA763800F8E45C /* CCNode+PauseResume.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CCNode+PauseResume.h"; path = "Classes/CCNode+PauseResume.h"; sourceTree = "<group>"; };
+		04DE523114FA763800F8E45C /* CCNode+PauseResume.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "CCNode+PauseResume.m"; path = "Classes/CCNode+PauseResume.m"; sourceTree = "<group>"; };
 		04E3096614D6385700685C10 /* HiScoresButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HiScoresButton-hd.png"; sourceTree = "<group>"; };
 		04E3096714D6385700685C10 /* HiScoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HiScoresButton.png; sourceTree = "<group>"; };
 		04E3096814D6385700685C10 /* HowToButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HowToButton-hd.png"; sourceTree = "<group>"; };
@@ -586,6 +592,8 @@
 		04E3098C14D6459500685C10 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				04DE523014FA763800F8E45C /* CCNode+PauseResume.h */,
+				04DE523114FA763800F8E45C /* CCNode+PauseResume.m */,
 				04F7B1DF14D5FD3500F774C4 /* CommonHeaders.h */,
 				04F7B1E014D5FD3500F774C4 /* Debug.h */,
 				04F7B1E114D5FD3500F774C4 /* Enums.h */,
@@ -646,6 +654,8 @@
 				04F7B1E514D5FD3500F774C4 /* GameLayer.m */,
 				047F16CC14DA419B00C9F9E0 /* EndGameLayer.h */,
 				047F16CD14DA419B00C9F9E0 /* EndGameLayer.m */,
+				04DE522C14FA702E00F8E45C /* PauseLayer.h */,
+				04DE522D14FA702E00F8E45C /* PauseLayer.m */,
 				04F7B1E614D5FD3500F774C4 /* GameScene.h */,
 				04F7B1E714D5FD3500F774C4 /* GameScene.m */,
 				04E3098114D638AB00685C10 /* MenuScene.h */,
@@ -1331,6 +1341,8 @@
 				04D331AA14E625B500DD82D4 /* ScoreScene.m in Sources */,
 				04D331AD14E62A1100DD82D4 /* Score.m in Sources */,
 				042FCA5314EC85F700E34155 /* ScoreUtility.m in Sources */,
+				04DE522E14FA702F00F8E45C /* PauseLayer.m in Sources */,
+				04DE523214FA763800F8E45C /* CCNode+PauseResume.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,12 +10,23 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+@class GameLayer;
+@class PauseLayer;
+
 @interface GameScene : CCScene {
+ 
+    GameLayer *gameLayer_;
+    
+    PauseLayer *pauseLayer_;
     
 }
 
 - (void) loadSpriteSheet;
 
 - (void) loadScoreScreen:(NSInteger)score;
+
+- (void) loadPauseScreen;
+
+- (void) removePauseScreen;
 
 @end

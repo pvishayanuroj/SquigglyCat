@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "GameLayer.h"
 #import "EndGameLayer.h"
+#import "PauseLayer.h"
 
 @implementation GameScene
 
@@ -24,8 +25,10 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
         background.anchorPoint = CGPointZero;
         [self addChild:background];
         
-        GameLayer *gameLayer = [GameLayer node];
-        [self addChild:gameLayer];
+        gameLayer_ = [[GameLayer node] retain];
+        [self addChild:gameLayer_];
+        
+        pauseLayer_ = nil;
         
     }
     return self;
@@ -36,6 +39,9 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
 #if DEBUG_DEALLOC
     NSLog(@"Menu Scene dealloc'd");
 #endif
+    
+    [gameLayer_ release];
+    [pauseLayer_ release];
     
     [super dealloc];
 }
@@ -57,6 +63,34 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
 
     id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, 0)];
     [endGameLayer runAction:move];
+}
+
+- (void) loadPauseScreen
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];    
+    
+    if (pauseLayer_ == nil) {
+        pauseLayer_ = [[PauseLayer node] retain];
+        pauseLayer_.position = ccp(0, size.height);
+        [self addChild:pauseLayer_];
+    }
+    
+    id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, 0)];
+    [pauseLayer_ runAction:move];
+}
+
+- (void) removePauseScreen
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];     
+    
+    id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, size.height)];    
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resumeGame)];
+    [pauseLayer_ runAction:[CCSequence actions:move, done, nil]];    
+}
+
+- (void) resumeGame
+{
+    [gameLayer_ resumeGame];
 }
 
 @end

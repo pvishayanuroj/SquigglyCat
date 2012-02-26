@@ -40,7 +40,7 @@
     
     BOOL clickEnabled_;
     
-    AnimatedButton *restartButton_;
+    AnimatedButton *pauseButton_;
 }
 
 - (void) addItem:(ItemType)itemType gridPos:(Pair *)gridPos;
@@ -49,6 +49,12 @@
 
 - (void) endLevel;
 
+- (void) pauseGame;
+
+- (void) resumeGame;
+
 - (void) freezeCat;
+
+- (void) unfreezeCat;
 
 @end
