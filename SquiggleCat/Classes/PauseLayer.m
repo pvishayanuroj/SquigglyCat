@@ -10,6 +10,7 @@
 #import "AnimatedButton.h"
 #import "GameScene.h"
 #import "MenuScene.h"
+#import "SimpleAudioEngine.h"
 
 @implementation PauseLayer
 
@@ -50,18 +51,21 @@ static const CGFloat PL_RESUME_Y = 280.0f;
 
 - (void) mainMenu
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];     
     MenuScene *menuScene = [MenuScene node];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:menuScene]];    
 }
 
 - (void) restart
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];     
     GameScene *gameScene = [GameScene node];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5f scene:gameScene]];    
 }
 
 - (void) resume
 {
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];     
     GameScene *gameScene = (GameScene *)[[CCDirector sharedDirector] runningScene];
     [gameScene removePauseScreen];
 }

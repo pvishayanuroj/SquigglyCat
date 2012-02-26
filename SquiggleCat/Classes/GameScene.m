@@ -10,6 +10,7 @@
 #import "GameLayer.h"
 #import "EndGameLayer.h"
 #import "PauseLayer.h"
+#import "SimpleAudioEngine.h"
 
 @implementation GameScene
 
@@ -75,6 +76,7 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
         [self addChild:pauseLayer_];
     }
     
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];     
     id move = [CCMoveTo actionWithDuration:GS_ENDGAME_MOVE_SPEED position:ccp(0, 0)];
     [pauseLayer_ runAction:move];
 }

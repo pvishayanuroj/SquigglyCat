@@ -82,7 +82,7 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
 - (void) showScores
 {
     ScoreScene *scoreScene = [ScoreScene node];
-        [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
     [[CCDirector sharedDirector] replaceScene:[CCTransitionPageTurn transitionWithDuration:0.5f scene:scoreScene]];
 }
 
