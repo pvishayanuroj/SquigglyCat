@@ -12,6 +12,7 @@
 #import "MenuScene.h"
 #import "SimpleAudioEngine.h"
 #import "ScoreUtility.h"
+#import "GameCenterManager.h"
 
 @implementation ScoreScene
 
@@ -64,6 +65,8 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 
 - (void) dealloc
 {
+    [GameCenterManager manager].delegate = nil;
+    
     [labels_ release];
     [title_ release];
     [globalButton_ release];
@@ -146,8 +149,20 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
     [title_ setString:@"Global Scores"];    
     
     [self removeAllLabels];
-    [self showHighScores:[NSArray array] showName:YES];    
+    
+    GameCenterManager *manager = [GameCenterManager manager];
+    manager.delegate = self;
+    [manager retrieveTopTenScores];
 }
 
+- (void) leaderboardRetrieved:(NSArray *)scores
+{
+    NSMutableArray *globalScores = [NSMutableArray array];
+    for (GKScore *scoreGK in scores) {
+        Score *score = [Score score:scoreGK.playerID value:(NSInteger)scoreGK.value];
+        [globalScores addObject:score];
+    }
+    [self showHighScores:globalScores showName:YES];
+}
 
 @end

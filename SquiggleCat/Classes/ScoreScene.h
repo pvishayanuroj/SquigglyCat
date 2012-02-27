@@ -8,11 +8,13 @@
 
 #import "CommonHeaders.h"
 #import <Foundation/Foundation.h>
+#import <GameKit/GameKit.h>
 #import "cocos2d.h"
+#import "GameCenterManagerDelegate.h"
 
 @class AnimatedButton;
 
-@interface ScoreScene : CCScene {
+@interface ScoreScene : CCScene <GameCenterManagerDelegate> {
     
     NSMutableArray *labels_;
     

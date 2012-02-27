@@ -11,6 +11,7 @@
 #import "AnimatedButton.h"
 #import "ScoreScene.h"
 #import "SimpleAudioEngine.h"
+#import "GameCenterManager.h"
 
 @implementation MenuScene
 
@@ -20,7 +21,7 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
 {
     if ((self = [super init])) {
 
-        [self authenticateLocalPlayer];
+        [[GameCenterManager manager] authenticateLocalUser];
         
 		CGSize size = [[CCDirector sharedDirector] winSize];        
         
@@ -91,16 +92,6 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
     GameScene *gameScene = [GameScene node];
     [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInB transitionWithDuration:0.5f scene:gameScene]];
-}
-
-- (void) authenticateLocalPlayer
-{
-    GKLocalPlayer *localPlayer = [GKLocalPlayer localPlayer];
-    [localPlayer authenticateWithCompletionHandler:^(NSError *error) {
-        if (localPlayer.isAuthenticated) {
-            // Perform additional tasks for the authenticated player.
-        }
-    }];
 }
 
 @end

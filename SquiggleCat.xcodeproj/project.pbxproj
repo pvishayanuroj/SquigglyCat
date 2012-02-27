@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040A0C9D14FB205C006803F9 /* GameCenterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 040A0C9C14FB205C006803F9 /* GameCenterManager.m */; };
 		042FCA5314EC85F700E34155 /* ScoreUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FCA5214EC85F700E34155 /* ScoreUtility.m */; };
 		042FCA5914ECA42800E34155 /* Global-Button-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5514ECA42800E34155 /* Global-Button-Selected.png */; };
 		042FCA5A14ECA42800E34155 /* Global-Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 042FCA5614ECA42800E34155 /* Global-Button.png */; };
@@ -201,6 +202,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040A0C9B14FB205C006803F9 /* GameCenterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManager.h; path = Classes/GameCenterManager.h; sourceTree = "<group>"; };
+		040A0C9C14FB205C006803F9 /* GameCenterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameCenterManager.m; path = Classes/GameCenterManager.m; sourceTree = "<group>"; };
+		040A0C9F14FB2091006803F9 /* GameCenterManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameCenterManagerDelegate.h; path = Classes/GameCenterManagerDelegate.h; sourceTree = "<group>"; };
 		042FCA5114EC85F600E34155 /* ScoreUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScoreUtility.h; path = Classes/ScoreUtility.h; sourceTree = "<group>"; };
 		042FCA5214EC85F700E34155 /* ScoreUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScoreUtility.m; path = Classes/ScoreUtility.m; sourceTree = "<group>"; };
 		042FCA5514ECA42800E34155 /* Global-Button-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Global-Button-Selected.png"; sourceTree = "<group>"; };
@@ -669,6 +673,9 @@
 				04F7B1E814D5FD3500F774C4 /* Item.h */,
 				04F7B1E914D5FD3500F774C4 /* Item.m */,
 				04F7B1EA14D5FD3500F774C4 /* ItemDelegate.h */,
+				040A0C9B14FB205C006803F9 /* GameCenterManager.h */,
+				040A0C9C14FB205C006803F9 /* GameCenterManager.m */,
+				040A0C9F14FB2091006803F9 /* GameCenterManagerDelegate.h */,
 				04F7B07114D5FCC300F774C4 /* Resources */,
 				04F7B08514D5FCC300F774C4 /* libs */,
 				04F7B1BE14D5FCC700F774C4 /* Supporting Files */,
@@ -1343,6 +1350,7 @@
 				042FCA5314EC85F700E34155 /* ScoreUtility.m in Sources */,
 				04DE522E14FA702F00F8E45C /* PauseLayer.m in Sources */,
 				04DE523214FA763800F8E45C /* CCNode+PauseResume.m in Sources */,
+				040A0C9D14FB205C006803F9 /* GameCenterManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

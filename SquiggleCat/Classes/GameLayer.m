@@ -36,7 +36,7 @@ static const CGFloat GL_BOUNDARY_Y = 420.0f;
 
 static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
 static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
-static const NSInteger GL_LEVEL_TIME = 60;
+static const NSInteger GL_LEVEL_TIME = 10;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
