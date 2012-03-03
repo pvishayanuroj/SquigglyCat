@@ -21,6 +21,8 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
 {
     if ((self = [super init])) {
 
+        [self preloadSounds];
+        
         [[GameCenterManager manager] authenticateLocalUser];
         
 		CGSize size = [[CCDirector sharedDirector] winSize];        
@@ -69,7 +71,7 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
     CGSize size = [[CCDirector sharedDirector] winSize];
     id moveIn = [CCMoveTo actionWithDuration:MS_INSTRUCTION_MOVE_SPEED position:ccp(size.width / 2, size.height / 2)];
 	[instructions_ runAction:moveIn];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundPaperFlip]; 
 }
 
 - (void) hideInstructions 
@@ -77,21 +79,37 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
     CGSize size = [[CCDirector sharedDirector] winSize];
     id moveIn = [CCMoveTo actionWithDuration:MS_INSTRUCTION_MOVE_SPEED position:ccp(640.0f, size.height / 2)];
 	[instructions_ runAction:moveIn];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundPaperFlip]; 
 }
 
 - (void) showScores
 {
     ScoreScene *scoreScene = [ScoreScene node];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundPaperFlip]; 
     [[CCDirector sharedDirector] replaceScene:[CCTransitionPageTurn transitionWithDuration:0.5f scene:scoreScene]];
 }
 
 - (void) startGame 
 {
     GameScene *gameScene = [GameScene node];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"]; 
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundPaperFlip]; 
     [[CCDirector sharedDirector] replaceScene:[CCTransitionSlideInB transitionWithDuration:0.5f scene:gameScene]];
+}
+
+- (void) preloadSounds
+{
+    // Initilaize bg music
+    SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
+    [sae preloadBackgroundMusic:kMusicRoadTrip];
+    [sae preloadEffect:kSoundPaperFlip];
+    [sae preloadEffect:kSoundWhistle];    
+    [sae preloadEffect:kSoundClock];
+    [sae preloadEffect:kSoundBirdChirps];
+    [sae preloadEffect:kSoundBump];
+    [sae preloadEffect:kSoundLitterbox];
+    [sae preloadEffect:kSoundPoints];
+    [sae preloadEffect:kSoundSquiggy];
+    [sae preloadEffect:kSoundSlurp];
 }
 
 @end

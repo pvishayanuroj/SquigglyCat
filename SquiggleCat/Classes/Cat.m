@@ -237,7 +237,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
     [self runAction:[CCSequence actions:delay, done, nil]]; 
     
-    [[SimpleAudioEngine sharedEngine] playEffect:@"birdchirps.wav"];
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundBirdChirps];
 }
 
 - (void) runJumpAnimation
@@ -292,18 +292,18 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         case kItemFish:
             [self fatten];
             [self runHappyAnimation];
-            [[SimpleAudioEngine sharedEngine] playEffect:@"points.wav"];
+            [[SimpleAudioEngine sharedEngine] playEffect:kSoundPoints];
             break;
         // Milk speeds up the cat and makes it happy
         case kItemMilk:
             if(milkCombo_ >= MILKY_TIME_COMBO_TRIGGER){
                 [self runJumpAnimation];
                 [self startMilkyTime];
-                [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-squiggy.wav"];
+                [[SimpleAudioEngine sharedEngine] playEffect:kSoundSquiggy];
                 milkCombo_ = 0.0f; //reset combo meter
             }
             else {
-                [[SimpleAudioEngine sharedEngine] playEffect:@"Squiggly-slurp.wav"];
+                [[SimpleAudioEngine sharedEngine] playEffect:kSoundSlurp];
                 velocity_ += CAT_VELOCITY_INCREASE;
                 [self runHappyAnimation];  
                 milkCombo_++; //increase combo meter
@@ -315,14 +315,14 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
                 [self stopAllActions];
                 [self runHurtAnimation];
             }
-            [[SimpleAudioEngine sharedEngine] playEffect:@"bump.caf"];
+            [[SimpleAudioEngine sharedEngine] playEffect:kSoundBump];
             break;
         // Litter box resets cat velocity, slims it down, and makes it happy
         case kItemLitterBox:
             velocity_ = CAT_VELOCITY;
             [self slim];
             [self runHappyAnimation];
-            [[SimpleAudioEngine sharedEngine] playEffect:@"litterbox.caf"];
+            [[SimpleAudioEngine sharedEngine] playEffect:kSoundLitterbox];
             break;
         // Teddy bear runs surprised animation
         case kItemTeddyBear:

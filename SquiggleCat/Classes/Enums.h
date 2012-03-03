@@ -17,3 +17,14 @@ typedef enum {
 } ItemType;
 
 #define NUM_HIGH_SCORES 10
+
+#define kSoundPaperFlip @"PaperFlip.mp3"
+#define kSoundWhistle @"Whistle 1.caf"
+#define kSoundClock @"clock.wav"
+#define kSoundBirdChirps @"birdchirps.wav"
+#define kSoundBump @"bump.caf"
+#define kSoundLitterbox @"litterbox.caf"
+#define kSoundPoints @"points.wav"
+#define kSoundSquiggy @"Squiggly-squiggy.wav"
+#define kSoundSlurp @"Squiggly-slurp.wav"
+#define kMusicRoadTrip @"Roadtrip Long.caf"

@@ -122,7 +122,7 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 - (void) mainMenu
 {
     MenuScene *menuScene = [MenuScene node];
-    [[SimpleAudioEngine sharedEngine] playEffect:@"PaperFlip.mp3"];
+    [[SimpleAudioEngine sharedEngine] playEffect:kSoundPaperFlip];
     [[CCDirector sharedDirector] replaceScene:[CCTransitionPageTurn transitionWithDuration:0.5f scene:menuScene]];    
 }
 

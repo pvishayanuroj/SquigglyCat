@@ -95,16 +95,12 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         // Initialize data storage
         items_ = [[NSMutableArray array] retain];
         
-        // Initilaize bg music
+        // Play background music
         SimpleAudioEngine *sae = [SimpleAudioEngine sharedEngine];
-        if (sae != nil) {
-            [sae preloadBackgroundMusic:@"Roadtrip Long.caf"];
-            if (sae.willPlayBackgroundMusic) {
-                sae.backgroundMusicVolume = 0.25f;
-            }
-        }
-        
-        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Roadtrip Long.caf"];//play background music
+        if (sae.willPlayBackgroundMusic) {
+            sae.backgroundMusicVolume = 0.25f;
+            [sae playBackgroundMusic:kMusicRoadTrip];
+        }        
         
         // Initialize loops
         [self schedule:@selector(collisionLoop:) interval:GL_COLLISION_LOOP_SPEED];
@@ -221,7 +217,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 {
     timer_--;
     if (timer_ < 0) {
-        [[SimpleAudioEngine sharedEngine] playEffect:@"Whistle 1.caf"];  
+        [[SimpleAudioEngine sharedEngine] playEffect:kSoundWhistle];  
         [self endLevel];
     }
     else {
@@ -229,8 +225,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     }
     if (timer_ == 10){
         //Play clock tick when there's 10 seconds left!
-        [[SimpleAudioEngine sharedEngine] playEffect:@"clock.wav"];  
-        NSLog(@"Tick Tock!");
+        [[SimpleAudioEngine sharedEngine] playEffect:kSoundClock];  
     }
     
     //Check if Cat's Milky Time meter is ON (i.e. > 0)
