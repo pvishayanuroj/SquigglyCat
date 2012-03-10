@@ -18,10 +18,12 @@
     CCSprite *spriteEye_;
     
     CCSprite *spriteTail_;
+    
+    //Body Animation
 
     CCAction *walkAnimation_;
     
-    CCAction *earFlapAnimation_;
+    //Face Animations
     
     CCAction *hurtFaceAnimation_;
     
@@ -30,6 +32,14 @@
     CCAction *surprisedFaceAnimation_;
     
     CCAction *dizzyFaceAnimation_;
+    
+    CCAction *yummyFaceAnimation_;
+    
+    CCAction *poopFaceAnimation_;
+    
+    CCAction *sleepFaceAnimation_;
+    
+    //*****************
     
     CGRect boundingBox_;
     
@@ -69,6 +79,10 @@
 - (void) runSurprisedAnimation;
 
 - (void) runDizzyAnimation;
+
+- (void) runEatingAnimation;
+
+- (void) runPoopAnimation;
 
 - (void) endMilkyTime;
 

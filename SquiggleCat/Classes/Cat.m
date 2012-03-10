@@ -53,16 +53,16 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         boundingBox_ = CGRectMake(CAT_BB_X, CAT_BB_Y, CAT_BB_WIDTH, CAT_BB_HEIGHT);
         
         //Body
-        spriteBody_ = [[CCSprite spriteWithSpriteFrameName:@"Squigee_normal.png"] retain];
+        spriteBody_ = [[CCSprite spriteWithSpriteFrameName:@"Squiggy-Body-Idle.png"] retain];
         [self addChild:spriteBody_ z:-2];
         
         //Face
-        spriteEye_ = [[CCSprite spriteWithSpriteFrameName:@"SquigeeFace_idle.png"] retain];
+        spriteEye_ = [[CCSprite spriteWithSpriteFrameName:@"Squiggy-Face-Idle.png"] retain];
         [self addChild:spriteEye_ z:-1];
         spriteEye_.position = ccp(3.0f, 0.0f);
         
         //Tail
-        spriteTail_ = [[CCSprite spriteWithSpriteFrameName:@"SquigeeTails.png"] retain];
+        spriteTail_ = [[CCSprite spriteWithSpriteFrameName:@"Squiggy-Tail.png"] retain];
         [self addChild:spriteTail_ z:-3];   
         
         [self initAnimations];
@@ -76,7 +76,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         //Particle
         particle_= [[CCParticleSystemQuad alloc] initWithTotalParticles:100];
         
-        CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"squigeex.png"];
+        CCTexture2D *texture=[[CCTextureCache sharedTextureCache] addImage:@"squigParticle.png"];
         particle_.texture=texture;
         particle_.emissionRate=50;
         particle_.angle=10.0;
@@ -117,10 +117,11 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     [spriteEye_ release];
     [spriteTail_ release];
     [walkAnimation_ release];
-    [earFlapAnimation_ release];
     [hurtFaceAnimation_ release];
     [happyFaceAnimation_ release];
     [surprisedFaceAnimation_ release];
+    [yummyFaceAnimation_ release];
+    [poopFaceAnimation_ release];
     [particle_ release];
 
     [super dealloc];
@@ -131,50 +132,57 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     //*******Body Animations*******//
     //Walking Animation
     NSMutableArray *walkAnimFrames = [NSMutableArray array];
-    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_walkLeft.png"]];
-    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_walkRight.png"]];
-    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
+    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Body-Left.png"]];
+    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Body-Right.png"]];
+    [walkAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Body-Idle.png"]];
     CCAnimation *walkAnim = [CCAnimation animationWithFrames:walkAnimFrames delay:0.2f];
     walkAnimation_ = [[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:walkAnim restoreOriginalFrame:YES]] retain];    
-    
-    //Earflapping Animation
-    NSMutableArray *earFlapAnimFrames = [NSMutableArray array];
-    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
-    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_EarFlap.png"]];
-    [earFlapAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squigee_normal.png"]];
-    CCAnimation *earFlapAnim = [CCAnimation animationWithFrames:earFlapAnimFrames delay:0.2f];
-    earFlapAnimation_ = [[CCAnimate actionWithAnimation:earFlapAnim] retain];
-    
+        
     //*******Facial Animations*******//
     //Hurt
     NSMutableArray *hurtFaceAnimFrames = [NSMutableArray array];
-    [hurtFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_hurt.png"]];
+    [hurtFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-hurt.png"]];
     CCAnimation *hurtFace = [CCAnimation animationWithFrames:hurtFaceAnimFrames delay:1.0f];
     hurtFaceAnimation_ = [[CCAnimate actionWithAnimation:hurtFace] retain];    
     
     //Happy
     NSMutableArray *happyFaceAnimFrames = [NSMutableArray array];
-    [happyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_happy.png"]];
+    [happyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-happy.png"]];
     CCAnimation *happyFace = [CCAnimation animationWithFrames:happyFaceAnimFrames delay:1.0f];
     happyFaceAnimation_ = [[CCAnimate actionWithAnimation:happyFace] retain];
     
     //Surprised
     NSMutableArray *surprisedFaceAnimFrames = [NSMutableArray array];
-    [surprisedFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace_surprised.png"]];
+    [surprisedFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-shocked.png"]];
     CCAnimation *surprisedFace = [CCAnimation animationWithFrames:surprisedFaceAnimFrames delay:1.0f];
     surprisedFaceAnimation_ = [[CCAnimate actionWithAnimation:surprisedFace] retain]; 
     
+    //Poop Face
+    NSMutableArray *poopFaceAnimFrames = [NSMutableArray array];
+    [poopFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-poop.png"]];
+    CCAnimation *poopFace = [CCAnimation animationWithFrames:poopFaceAnimFrames delay:1.0f];
+    poopFaceAnimation_ = [[CCAnimate actionWithAnimation:poopFace] retain];     
+    
+    
     //Dizzy
     NSMutableArray *dizzyFaceAnimFrames = [NSMutableArray array];
-    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
-    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy2.png"]];
-    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
-    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy2.png"]];
-    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"SquigeeFace-dizzy1.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-dizzy1.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-dizzy2.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-dizzy1.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-dizzy2.png"]];
+    [dizzyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-dizzy1.png"]];
     CCAnimation *dizzyFace = [CCAnimation animationWithFrames:dizzyFaceAnimFrames delay:0.2f];
     dizzyFaceAnimation_ = [[CCAnimate actionWithAnimation:dizzyFace] retain]; 
+    
+    //Eating-Yummy
+    NSMutableArray *yummyFaceAnimFrames = [NSMutableArray array];
+    [yummyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-yummy1.png"]];
+    [yummyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-yummy2.png"]];
+    [yummyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-yummy1.png"]];
+    [yummyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-yummy2.png"]];
+    [yummyFaceAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"Squiggy-Face-yummy1.png"]];
+    CCAnimation *yummyFace = [CCAnimation animationWithFrames:yummyFaceAnimFrames delay:0.2f];
+    yummyFaceAnimation_ = [[CCAnimate actionWithAnimation:yummyFace] retain]; 
 }
 
 - (void) resetIdleFrame
@@ -182,10 +190,10 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     [spriteEye_ stopAllActions];
     [spriteBody_ stopAllActions];    
     
-    NSString *spriteEyeFrameName = [NSString stringWithFormat:@"SquigeeFace_idle.png"];
+    NSString *spriteEyeFrameName = [NSString stringWithFormat:@"Squiggy-Face-Idle.png"];
     [spriteEye_ setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteEyeFrameName]];
     
-    NSString *spriteBodyFrameName = [NSString stringWithFormat:@"Squigee_normal.png"];
+    NSString *spriteBodyFrameName = [NSString stringWithFormat:@"Squiggy-Body-Idle.png"];
     [spriteBody_ setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:spriteBodyFrameName]];    
 }
 
@@ -205,8 +213,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
 {
     [spriteEye_ stopAllActions];
     [spriteBody_ stopAllActions];
-    [spriteEye_ runAction:happyFaceAnimation_];
-    [spriteBody_ runAction:earFlapAnimation_];    
+    [spriteEye_ runAction:happyFaceAnimation_];  
     
     // Ensure that delay is equal to animation time
     id delay = [CCDelayTime actionWithDuration:1.0f];
@@ -238,6 +245,30 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     [self runAction:[CCSequence actions:delay, done, nil]]; 
     
     [[SimpleAudioEngine sharedEngine] playEffect:kSoundBirdChirps];
+}
+
+- (void) runEatingAnimation
+{
+    [spriteEye_ stopAllActions];
+    [spriteBody_ stopAllActions];
+    [spriteEye_ runAction:yummyFaceAnimation_];    
+    
+    // Ensure that delay is equal to animation time
+    id delay = [CCDelayTime actionWithDuration:1.0f];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
+    [self runAction:[CCSequence actions:delay, done, nil]];    
+}
+
+- (void) runPoopAnimation
+{
+    [spriteEye_ stopAllActions];
+    [spriteBody_ stopAllActions];
+    [spriteEye_ runAction:poopFaceAnimation_];    
+    
+    // Ensure that delay is equal to animation time
+    id delay = [CCDelayTime actionWithDuration:1.0f];
+    id done = [CCCallFunc actionWithTarget:self selector:@selector(resetIdleFrame)];
+    [self runAction:[CCSequence actions:delay, done, nil]];    
 }
 
 - (void) runJumpAnimation
@@ -291,7 +322,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         // Fish fattens cat and makes it happy
         case kItemFish:
             [self fatten];
-            [self runHappyAnimation];
+            [self runEatingAnimation];
             [[SimpleAudioEngine sharedEngine] playEffect:kSoundPoints];
             break;
         // Milk speeds up the cat and makes it happy
@@ -305,7 +336,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
             else {
                 [[SimpleAudioEngine sharedEngine] playEffect:kSoundSlurp];
                 velocity_ += CAT_VELOCITY_INCREASE;
-                [self runHappyAnimation];  
+                [self runEatingAnimation];  
                 milkCombo_++; //increase combo meter
             }
             break;
@@ -313,7 +344,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         case kItemTrashCan:
             if(milkyTimeMeter_<1){
                 [self stopAllActions];
-                [self runHurtAnimation];
+                [self runDizzyAnimation];
             }
             [[SimpleAudioEngine sharedEngine] playEffect:kSoundBump];
             break;
@@ -321,14 +352,15 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         case kItemLitterBox:
             velocity_ = CAT_VELOCITY;
             [self slim];
-            [self runHappyAnimation];
+            [self runPoopAnimation];
             [[SimpleAudioEngine sharedEngine] playEffect:kSoundLitterbox];
             break;
         // Teddy bear runs surprised animation
         case kItemTeddyBear:
             if(milkyTimeMeter_ <1){
                 [self stopAllActions];            
-                [self runDizzyAnimation];
+                [self runHurtAnimation];
+                [[SimpleAudioEngine sharedEngine] playEffect:kSoundBirdSquawk];
             }
             break;
         default:

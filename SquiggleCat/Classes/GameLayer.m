@@ -43,10 +43,10 @@ static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;
 static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
 static const NSInteger GL_LEVEL_TIME = 60;
 
-static const CGFloat GL_SCORE_X = 150.0f;
-static const CGFloat GL_SCORE_Y = 460.0f;
-static const CGFloat GL_TIMER_X = 40.0f;
-static const CGFloat GL_TIMER_Y = 460.0f;
+static const CGFloat GL_SCORE_X = 110.0f;
+static const CGFloat GL_SCORE_Y = 450.0f;
+static const CGFloat GL_TIMER_X = 30.0f;
+static const CGFloat GL_TIMER_Y = 450.0f;
 
 static const CGFloat GL_CAT_START_X = 100.0f;
 static const CGFloat GL_CAT_START_Y = 200.0f;
@@ -74,8 +74,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         
         gridStatus_ = [[NSMutableSet set] retain];
         
-        //I think the button is too small.. hard to tap, I think I'll draw up a new one
-        pauseButton_ = [[AnimatedButton buttonWithImage:@"returnBtn.png" target:self selector:@selector(pauseGame)] retain];
+        pauseButton_ = [[AnimatedButton buttonWithImage:@"pauseBtn.png" target:self selector:@selector(pauseGame)] retain];
 
         [self addChild:pauseButton_ z:2];
         [pauseButton_ setPosition:ccp(290,455)];
@@ -89,7 +88,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         
         timer_ = GL_LEVEL_TIME;
         NSString *timeText = [NSString stringWithFormat:@"%d", timer_];
-        timerLabel_ = [[CCLabelBMFont labelWithString:timeText fntFile:@"SquigglyWhite.fnt"] retain];
+        timerLabel_ = [[CCLabelBMFont labelWithString:timeText fntFile:@"SquiggyF.fnt"] retain];
         timerLabel_.position = ccp(GL_TIMER_X, GL_TIMER_Y);
         timerLabel_.scale = 0.75f;
         [self addChild:timerLabel_];        
@@ -114,17 +113,6 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         [self schedule:@selector(spawnLoop:) interval:GL_SPAWN_LOOP_SPEED];  
         [self schedule:@selector(timerLoop:) interval:GL_TIMER_LOOP_SPEED];          
         
-        /* WTF Apple???
-        CGRect t1 = CGRectMake(83, 84, 40, 32);
-        CGRect t2 = CGRectMake(60, 90, 16, 28);
-        
-        if (CGRectIntersectsRect(t1, t2)) {
-            NSLog(@"TRUETRUETRUE");
-        }
-        else {
-            NSLog(@"FALSEFASLSE");
-        }
-         */
     }
     return self;
 }

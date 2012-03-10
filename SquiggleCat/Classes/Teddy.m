@@ -24,13 +24,21 @@ static const CGFloat TDY_BB_HEIGHT = 40.0f;
         
         boundingBox_ = CGRectMake(TDY_BB_X, TDY_BB_Y, TDY_BB_WIDTH, TDY_BB_HEIGHT);
 
-        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"Teddy.png"] retain];
+        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"bird1.png"] retain];
         [self addChild:sprite_ z:-1];    
         
         [super spawnIn];        
     }
     
 	return self;
+}
+
+- (void) collide {
+    
+    CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"bird2.png"];
+    [sprite_ setDisplayFrame: frame];
+    
+    [super collide];
 }
 
 - (void) dealloc

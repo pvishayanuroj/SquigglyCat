@@ -27,30 +27,27 @@ static const CGFloat MS_INSTRUCTION_MOVE_SPEED = 0.4f;
         
 		CGSize size = [[CCDirector sharedDirector] winSize];        
         
-        // Add background and title
-        CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
-        background.anchorPoint = CGPointZero;
-		[self addChild:background];
+        // Add title image
         
-        CCSprite *title = [[CCSprite alloc] initWithFile:@"SquigeeHeader.png"];
+        CCSprite *title = [[CCSprite alloc] initWithFile:@"SquigeeTitle.png"];
         title.anchorPoint = CGPointZero;
         [self addChild:title];
         
         // Add menu buttons
-        AnimatedButton *startButton = [AnimatedButton buttonWithImage:@"StartButton.png" target:self selector:@selector(startGame)];
-        AnimatedButton *helpButton = [AnimatedButton buttonWithImage:@"HowToButton.png" target:self selector:@selector(showInstructions)];
-        AnimatedButton *highScoreButton = [AnimatedButton buttonWithImage:@"HiScoresButton.png" target:self selector:@selector(showScores)];
+        AnimatedButton *startButton = [AnimatedButton buttonWithImage:@"start.png" target:self selector:@selector(startGame)];
+        AnimatedButton *helpButton = [AnimatedButton buttonWithImage:@"howto.png" target:self selector:@selector(showInstructions)];
+        AnimatedButton *highScoreButton = [AnimatedButton buttonWithImage:@"hiscores.png" target:self selector:@selector(showScores)];
         
-        startButton.position = CGPointMake(50, 200);
-        helpButton.position = CGPointMake(100, 150);
-        highScoreButton.position = CGPointMake(95, 100); 
+        startButton.position = CGPointMake(68, 200);
+        helpButton.position = CGPointMake(120, 150);
+        highScoreButton.position = CGPointMake(94, 100); 
         
         [self addChild:startButton];
         [self addChild:helpButton];
         [self addChild:highScoreButton];
         
         // Add instruction sheet
-        instructions_ = [[AnimatedButton buttonWithImage:@"SquigeeInstructions.png" target:self selector:@selector(hideInstructions)] retain];
+        instructions_ = [[AnimatedButton buttonWithImage:@"Instructions.png" target:self selector:@selector(hideInstructions)] retain];
         instructions_.position = ccp(640, size.height / 2);
         [self addChild:instructions_];        
         

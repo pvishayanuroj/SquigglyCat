@@ -28,7 +28,7 @@ const static NSInteger IT_INCREMENT_AMOUNT = 4;
         actualScore_ = 0;
         score_ = 0;
         NSString *scoreText = [NSString stringWithFormat:@"%d", score_];
-        text_ = [[CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"] retain];
+        text_ = [[CCLabelBMFont labelWithString:scoreText fntFile:@"SquiggyF.fnt"] retain];
         
         text_.anchorPoint = CGPointMake(0, 0.5f);
         [self addChild:text_];

@@ -27,13 +27,13 @@ static const CGFloat PL_RESUME_Y = 280.0f;
 {
     if ((self = [super init])) {
         
-        CCSprite *banner = [CCSprite spriteWithFile:@"ScoreResults.png"];
+        CCSprite *banner = [CCSprite spriteWithFile:@"score-pause-screen.png"];
         banner.position = ccp(PL_BANNER_X, PL_BANNER_Y);
         [self addChild:banner];
         
-        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"Menu-Button.png" target:self selector:@selector(mainMenu)];
-        AnimatedButton *restartButton = [AnimatedButton buttonWithImage:@"Replay-Button.png" target:self selector:@selector(restart)];          
-        AnimatedButton *resumeButton = [AnimatedButton buttonWithImage:@"Replay-Button.png" target:self selector:@selector(resume)];    
+        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"back.png" target:self selector:@selector(mainMenu)];
+        AnimatedButton *restartButton = [AnimatedButton buttonWithImage:@"restart.png" target:self selector:@selector(restart)];          
+        AnimatedButton *resumeButton = [AnimatedButton buttonWithImage:@"resume.png" target:self selector:@selector(resume)];    
         menuButton.position = ccp(PL_MENU_X, PL_MENU_Y);
         restartButton.position = ccp(PL_RESTART_X, PL_RESTART_Y);
         resumeButton.position = ccp(PL_RESUME_X, PL_RESUME_Y);

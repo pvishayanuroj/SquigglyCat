@@ -17,7 +17,7 @@
 @implementation ScoreScene
 
 static const CGFloat SS_NAME_X = 20.0f;
-static const CGFloat SS_SCORE_X = 300.0f;
+static const CGFloat SS_SCORE_X = 200.0f;
 static const CGFloat SS_LIST_Y = 380.0f;
 static const CGFloat SS_LIST_PADDING = 32.0f;
 
@@ -28,7 +28,7 @@ static const CGFloat SS_LOCAL_Y = 30.0f;
 static const CGFloat SS_GLOBAL_X = 250.0f;
 static const CGFloat SS_GLOBAL_Y = 30.0f;
 static const CGFloat SS_TITLE_X = 160.0f;
-static const CGFloat SS_TITLE_Y = 430.0f;
+static const CGFloat SS_TITLE_Y = 412.0f;
 
 static const CGFloat SS_FONT_SCALE = 0.5f;
 
@@ -36,23 +36,23 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 {
     if ((self = [super init])) {
         
-        CCSprite *background = [CCSprite spriteWithFile:@"background.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"highscore-screen.png"];
         background.anchorPoint = CGPointZero;
         [self addChild:background];        
         
-        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"Menu-Button.png" target:self selector:@selector(mainMenu)];
+        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"back.png" target:self selector:@selector(mainMenu)];
         menuButton.position = ccp(SS_MENU_X, SS_MENU_Y);
         [self addChild:menuButton];  
         
         labels_ = [[NSMutableArray array] retain];
         
-        title_ = [[CCLabelBMFont labelWithString:@"" fntFile:@"SquigglyWhite.fnt"] retain];
+        title_ = [[CCLabelBMFont labelWithString:@"" fntFile:@"SquiggyF.fnt"] retain];
         title_.position = ccp(SS_TITLE_X, SS_TITLE_Y);
         [self addChild:title_];        
         
-        localButton_ = [[AnimatedButton buttonWithImage:@"Local-Button.png" target:self selector:@selector(localButton)] retain];
+        localButton_ = [[AnimatedButton buttonWithImage:@"local-greyed.png" target:self selector:@selector(localButton)] retain];
         localButton_.position = ccp(SS_LOCAL_X, SS_LOCAL_Y);                     
-        globalButton_ = [[AnimatedButton buttonWithImage:@"Global-Button.png" target:self selector:@selector(globalButton)] retain];
+        globalButton_ = [[AnimatedButton buttonWithImage:@"global-greyed.png" target:self selector:@selector(globalButton)] retain];
         globalButton_.position = ccp(SS_GLOBAL_X, SS_GLOBAL_Y);
         
         [self localButton];
@@ -95,8 +95,8 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
         }
         
         scoreText = [NSString stringWithFormat:@"%d", score.value];        
-        nameLabel = [CCLabelBMFont labelWithString:nameText fntFile:@"SquigglyWhite.fnt"];            
-        scoreLabel = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"];           
+        nameLabel = [CCLabelBMFont labelWithString:nameText fntFile:@"SquiggyF.fnt"];            
+        scoreLabel = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquiggyF.fnt"];           
         nameLabel.anchorPoint = ccp(0, 0.5f);
         scoreLabel.anchorPoint = ccp(1, 0.5f);        
         nameLabel.scale = SS_FONT_SCALE;
@@ -130,11 +130,11 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 {
     localButton_.isLocked = YES;
     globalButton_.isLocked = NO;
-    [localButton_ updateImage:@"Local-Button-Selected.png"];
-    [globalButton_ updateImage:@"Global-Button.png"];   
+    [localButton_ updateImage:@"local.png"];
+    [globalButton_ updateImage:@"global-greyed.png"];   
     
     [title_ setString:@"Local Scores"];
-    
+    [title_ setScale:0.8f];
     [self removeAllLabels];
     [self showHighScores:[ScoreUtility getLocalScores] showName:NO];
 }
@@ -143,11 +143,12 @@ static const CGFloat SS_FONT_SCALE = 0.5f;
 {
     localButton_.isLocked = NO;
     globalButton_.isLocked = YES;
-    [localButton_ updateImage:@"Local-Button.png"];
-    [globalButton_ updateImage:@"Global-Button-Selected.png"];    
+    [localButton_ updateImage:@"local-greyed.png"];
+    [globalButton_ updateImage:@"global.png"];    
     
-    [title_ setString:@"Global Scores"];    
-    
+    [title_ setString:@"Global Scores"];
+    [title_ setScale:0.8f];
+
     [self removeAllLabels];
     
     GameCenterManager *manager = [GameCenterManager manager];

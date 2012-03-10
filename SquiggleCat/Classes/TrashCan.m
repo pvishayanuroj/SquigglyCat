@@ -23,7 +23,7 @@ static const CGFloat TC_BB_HEIGHT = 60.0f;
         
         boundingBox_ = CGRectMake(TC_BB_X, TC_BB_Y, TC_BB_WIDTH, TC_BB_HEIGHT);
 
-        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"trashcan1.png"] retain];        
+        sprite_ = [[CCSprite spriteWithSpriteFrameName:@"trash.png"] retain];        
         [self addChild:sprite_ z:-1];
         
         [super spawnIn];        
@@ -34,7 +34,7 @@ static const CGFloat TC_BB_HEIGHT = 60.0f;
 
 - (void) collide {
     
-    CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"trashcan2.png"];
+    CCSpriteFrame *frame = [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"trash.png"];
     [sprite_ setDisplayFrame: frame];
     
     [super collide];

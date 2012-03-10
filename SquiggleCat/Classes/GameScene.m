@@ -49,8 +49,8 @@ static const CGFloat GS_ENDGAME_MOVE_SPEED = 0.4f;
 
 - (void) loadSpriteSheet
 {
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"spritesheet.plist"];
-    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"spritesheet.png"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"SquigSheet.plist"];
+    CCSpriteBatchNode *spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"SquigSheet.png"];
     [self addChild:spriteSheet];
 }
 

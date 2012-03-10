@@ -28,3 +28,4 @@ typedef enum {
 #define kSoundSquiggy @"Squiggly-squiggy.wav"
 #define kSoundSlurp @"Squiggly-slurp.wav"
 #define kMusicRoadTrip @"Roadtrip Long.caf"
+#define kSoundBirdSquawk @"birdsquawk.wav"

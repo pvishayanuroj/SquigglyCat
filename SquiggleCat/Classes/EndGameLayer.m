@@ -32,19 +32,19 @@ static const CGFloat EG_SCORE_Y = 420.0f;
 {
     if ((self = [super init])) {
         
-        CCSprite *banner = [CCSprite spriteWithFile:@"ScoreResults.png"];
+        CCSprite *banner = [CCSprite spriteWithFile:@"score-pause-screen.png"];
         banner.position = ccp(EG_BANNER_X, EG_BANNER_Y);
         [self addChild:banner];
         
-        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"Menu-Button.png" target:self selector:@selector(mainMenu)];
-        AnimatedButton *restartButton = [AnimatedButton buttonWithImage:@"Replay-Button.png" target:self selector:@selector(restart)];  
+        AnimatedButton *menuButton = [AnimatedButton buttonWithImage:@"home.png" target:self selector:@selector(mainMenu)];
+        AnimatedButton *restartButton = [AnimatedButton buttonWithImage:@"restart.png" target:self selector:@selector(restart)];  
         menuButton.position = ccp(EG_MENU_X, EG_MENU_Y);
         restartButton.position = ccp(EG_RESTART_X, EG_RESTART_Y);
         [self addChild:menuButton];
         [self addChild:restartButton];
         
         NSString *scoreText = [NSString stringWithFormat:@"%d", score];
-        CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquigglyWhite.fnt"];
+        CCLabelBMFont *scoreLabel = [CCLabelBMFont labelWithString:scoreText fntFile:@"SquiggyF.fnt"];
         scoreLabel.position = ccp(EG_SCORE_X, EG_SCORE_Y);
         [self addChild:scoreLabel];
         

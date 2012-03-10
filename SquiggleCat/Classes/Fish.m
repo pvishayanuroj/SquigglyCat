@@ -26,22 +26,22 @@ static const CGFloat FS_BB_HEIGHT = 28.0f;
         int x = rand()%6+1;        
         switch (x) {
             case 1:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1-1.png"] retain];
                 break;
             case 2:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2-1.png"] retain];
                 break;
             case 3:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3-1.png"] retain];
                 break;
             case 4:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish4.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1-3.png"] retain];
                 break;
             case 5:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish5.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2-3.png"] retain];
                 break;
             case 6:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish6.png"] retain];
+                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3-3.png"] retain];
                 break;
             default:
                 break;
