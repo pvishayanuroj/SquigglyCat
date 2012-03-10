@@ -45,7 +45,11 @@
 
 - (void) addItem:(ItemType)itemType gridPos:(Pair *)gridPos;
 
+- (Pair *) gridPosFromPos:(CGPoint)pos;
+
 - (CGPoint) posFromGridPos:(Pair *)gridPos;
+
+- (NSSet *) tilesTouchingCat;
 
 - (void) endLevel;
 

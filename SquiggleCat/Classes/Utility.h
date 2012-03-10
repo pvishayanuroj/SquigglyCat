@@ -20,4 +20,13 @@
 
 + (BOOL) pointsEqual:(CGPoint)a b:(CGPoint)b;
 
++ (NSSet *) setIntersection:(NSSet *)a b:(NSSet *)b;
+
+// a - b (All a not in b)
++ (NSSet *) setSubtraction:(NSSet *)a b:(NSSet *)b;
+
++ (NSObject *) randomObjectFromSet:(NSSet *)set;
+
++ (NSSet *) allGridTiles:(NSInteger)width height:(NSInteger)height;
+
 @end

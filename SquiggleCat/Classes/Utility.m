@@ -7,7 +7,7 @@
 //
 
 #import "Utility.h"
-
+#import "Pair.h"
 
 @implementation Utility
 
@@ -36,6 +36,61 @@ static const CGFloat EPSILON = 0.001f;
 + (BOOL) pointsEqual:(CGPoint)a b:(CGPoint)b
 {
     return (fabs(a.x - b.x) < EPSILON && fabs(a.y - b.y) < EPSILON);
+}
+
++ (NSSet *) setIntersection:(NSSet *)a b:(NSSet *)b
+{
+    NSMutableSet *set = [NSMutableSet setWithCapacity:[a count]];
+    
+    for (NSObject *obj in a) {
+        if ([b containsObject:obj]) {
+            [set addObject:obj];
+        }
+    }
+    
+    return set;
+}
+
++ (NSSet *) setSubtraction:(NSSet *)a b:(NSSet *)b
+{
+    NSMutableSet *set = [NSMutableSet setWithCapacity:[a count]];
+    
+    for (NSObject *obj in a) {
+        if (![b containsObject:obj]) {
+            [set addObject:obj];
+        }
+    }
+    
+    return set;    
+}
+
++ (NSObject *) randomObjectFromSet:(NSSet *)set
+{
+    if ([set count] > 0) {    
+        NSInteger rand = arc4random() % [set count];
+        NSInteger count = 0;
+        for (NSObject *obj in set) {
+            if (count == rand) {
+                return obj;
+            }
+            count++;
+        }
+    }
+    // Only gets here if empty set
+    return nil;
+}
+
++ (NSSet *) allGridTiles:(NSInteger)width height:(NSInteger)height
+{
+    NSMutableSet *set = [NSMutableSet setWithCapacity:width * height];
+    
+    for (NSInteger x = 0; x < width; ++x) {
+        for (NSInteger y = 0; y < height; ++y) {
+            [set addObject:[Pair pair:x second:y]];
+        }
+    }
+    
+    return set;
 }
 
 @end

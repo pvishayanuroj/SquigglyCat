@@ -32,11 +32,16 @@ static const CGFloat GL_TIMER_LOOP_SPEED = 1.0f;
 static const NSInteger GL_NUM_GRIDS_X = 6;
 static const NSInteger GL_NUM_GRIDS_Y = 8;
 
+// These values control how far off center of a tile the cat can be before 
+// being considered ALSO in the adjacent tile
+static const CGFloat GL_CAT_WIDTH_FACTOR = 0.5f;
+static const CGFloat GL_CAT_HEIGHT_FACTOR = 0.5f;
+
 static const CGFloat GL_BOUNDARY_Y = 420.0f;
 
 static const NSInteger GL_NUM_USABLE_GRIDS_X = 6;	
 static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
-static const NSInteger GL_LEVEL_TIME = 10;
+static const NSInteger GL_LEVEL_TIME = 60;
 
 static const CGFloat GL_SCORE_X = 150.0f;
 static const CGFloat GL_SCORE_Y = 460.0f;
@@ -45,6 +50,8 @@ static const CGFloat GL_TIMER_Y = 460.0f;
 
 static const CGFloat GL_CAT_START_X = 100.0f;
 static const CGFloat GL_CAT_START_Y = 200.0f;
+
+static const NSInteger NUM_FISH_PER_CYCLE = 2;
 
 static const CGFloat GL_FREEZE_DURATION = 1.0f;
 
@@ -166,27 +173,28 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
 
 - (void) spawnLoop:(ccTime)dt
 {
+    // Determine the grid position of the cat
+    NSSet *catTiles = [self tilesTouchingCat];
+    
     for (NSUInteger i = 0; i < kNumItemTypes; ++i) {
         
         // For fish, force a spawn
         if (i == kItemFish) {
             
-            // Prevents an infinite loop
-            if ([gridStatus_ count] < numGridsX_ * numGridsY_) {
-                NSInteger x;
-                NSInteger y;
-                Pair *coord;
-                do {
-                    x = arc4random() % numGridsX_;
-                    y = arc4random() % numGridsY_;        
-                    coord = [Pair pair:x second:y];                    
-                }
-                while ([gridStatus_ containsObject:coord]);
+            for (NSInteger j = 0; j < NUM_FISH_PER_CYCLE; j++) {
+                NSSet *allTiles = [Utility allGridTiles:GL_NUM_USABLE_GRIDS_X height:GL_NUM_USABLE_GRIDS_Y];
+                NSSet *allTilesLessItems = [Utility setSubtraction:allTiles b:gridStatus_];
+                NSSet *remainingTiles = [Utility setSubtraction:allTilesLessItems b:catTiles];
                 
-                [gridStatus_ addObject:coord];
-                [self addItem:i gridPos:coord];                
+                Pair *coord = (Pair *)[Utility randomObjectFromSet:remainingTiles];
+                
+                if (coord != nil) {
+                    [gridStatus_ addObject:coord];
+                    [self addItem:i gridPos:coord];                               
+                }
             }
         }
+        // For any other item, try for a random spot, but if anything is there, no need to add
         else {
             // Generate a random coordinate
             NSInteger x = arc4random() % numGridsX_;
@@ -194,23 +202,12 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
             Pair *coord = [Pair pair:x second:y];
             
             // If spot isn't already taken, add the item
-            if (![gridStatus_ containsObject:coord]) {
+            if (![gridStatus_ containsObject:coord] && ![catTiles containsObject:coord]) {
                 [gridStatus_ addObject:coord];
                 [self addItem:i gridPos:coord];
             }            
         }
     }
-    //Add Another Fish!!
-    // Generate a random coordinate
-    NSInteger x = arc4random() % numGridsX_;
-    NSInteger y = arc4random() % numGridsY_;        
-    Pair *coord = [Pair pair:x second:y];
-    
-    // If spot isn't already taken, add the item
-    if (![gridStatus_ containsObject:coord]) {
-        [gridStatus_ addObject:coord];
-        [self addItem:kItemFish gridPos:coord];
-    } 
 }
 
 - (void) timerLoop:(ccTime)dt
@@ -336,10 +333,79 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     [self addChild:item z:0];
 }
 
+- (Pair *) gridPosFromPos:(CGPoint)pos
+{
+    NSInteger x = ((NSInteger)pos.x) / ((NSInteger)gridSize_.width);
+    NSInteger y = ((NSInteger)pos.y) / ((NSInteger)gridSize_.height);
+    return [Pair pair:x second:y];
+}
+
 - (CGPoint) posFromGridPos:(Pair *)gridPos
 {
     // +1 offset to account for case where x and or y are 0
-    return CGPointMake((gridPos.x + 1) * gridSize_.width  - gridSize_.width / 2, (gridPos.y + 1) * gridSize_.height - gridSize_.height / 2);
+    return CGPointMake(gridPos.x * gridSize_.width  + gridSize_.width / 2, gridPos.y * gridSize_.height + gridSize_.height / 2);
+}
+
+- (NSSet *) tilesTouchingCat
+{
+    NSMutableSet *tiles = [NSMutableSet setWithCapacity:3];
+    
+    NSInteger catX = (NSInteger)cat_.position.x;
+    NSInteger catY = (NSInteger)cat_.position.y;
+    
+    NSInteger width = (NSInteger)gridSize_.width;
+    NSInteger height = (NSInteger)gridSize_.height;
+    
+    NSInteger modX = catX % width;
+    NSInteger modY = catY % height;
+    
+    NSInteger tileX = catX / width;
+    NSInteger tileY = catY / height;
+    
+    [tiles addObject:[Pair pair:tileX second:tileY]];
+    
+    NSInteger leftBound = (NSInteger)(gridSize_.width * 0.5f - gridSize_.width * GL_CAT_WIDTH_FACTOR * 0.5f);
+    NSInteger rightBound = (NSInteger)(gridSize_.width * 0.5f + gridSize_.width * GL_CAT_WIDTH_FACTOR * 0.5f);    
+    NSInteger upperBound = (NSInteger)(gridSize_.height * 0.5f - gridSize_.height * GL_CAT_HEIGHT_FACTOR * 0.5f);
+    NSInteger lowerBound = (NSInteger)(gridSize_.height * 0.5f + gridSize_.height * GL_CAT_HEIGHT_FACTOR * 0.5f);        
+    
+    BOOL leftFlag = modX < leftBound && tileX > 0;
+    BOOL rightFlag = modX > rightBound && (tileX < GL_NUM_GRIDS_X - 1);
+    BOOL lowerFlag = modY < lowerBound && tileY > 0;
+    BOOL upperFlag = modY > upperBound && (tileY < GL_NUM_GRIDS_Y - 1);
+    
+    if (leftFlag) {
+        [tiles addObject:[Pair pair:tileX - 1 second:tileY]];
+    }
+    else if (rightFlag) {
+        [tiles addObject:[Pair pair:tileX + 1 second:tileY]];        
+    }
+    
+    if (lowerFlag) {
+        [tiles addObject:[Pair pair:tileX second:tileY - 1]];
+    }
+    else if (upperFlag) {
+        [tiles addObject:[Pair pair:tileX second:tileY + 1]];        
+    }
+    
+    // Check lower left
+    if (leftFlag && lowerFlag) {
+        [tiles addObject:[Pair pair:tileX - 1 second:tileY - 1]];
+    }
+    // Check lower right
+    else if (rightFlag && lowerFlag) {
+        [tiles addObject:[Pair pair:tileX + 1 second:tileY - 1]];
+    }
+    // Check upper left
+    else if (leftFlag && upperFlag) {
+        [tiles addObject:[Pair pair:tileX - 1 second:tileY + 1]];
+    }
+    // Check upper right
+    else if (rightFlag && upperFlag) {
+        [tiles addObject:[Pair pair:tileX + 1 second:tileY + 1]];
+    }
+    
+    return tiles;
 }
 
 - (void) endLevel
