@@ -13,7 +13,7 @@
 
 static const CGFloat LB_BB_X = 0.0f;
 static const CGFloat LB_BB_Y = 0.0f;
-static const CGFloat LB_BB_WIDTH = 50.0f;
+static const CGFloat LB_BB_WIDTH = 25.0f;
 static const CGFloat LB_BB_HEIGHT = 25.0f;
 
 - (id) init 

@@ -51,6 +51,8 @@
     
     CGFloat milkyTimeMeter_;
     
+    CGFloat bonusComboMeter_;
+    
     CCParticleSystem *particle_;
 }
 

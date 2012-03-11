@@ -31,7 +31,7 @@ static const CGFloat CAT_GROWTH_RATE = 0.1f;
 static const CGFloat CAT_MIN_SIZE = 1.0f;
 static const CGFloat CAT_SHRINK_RATE = 0.1f;
 
-static const CGFloat MILK_COMBO_COUNTER = 0.0f; //Milky Time Counter
+static const CGFloat INIT_COMBO_COUNTER = 0.0f; //Initializing the Counter
 static const CGFloat MILKY_TIME_COMBO_TRIGGER = 2.0f; //How much Milk to trigger MilkyTime
 static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
 
@@ -70,7 +70,8 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         [self catBreathing];
         
         velocity_ = CAT_VELOCITY;
-        milkCombo_ = MILK_COMBO_COUNTER;
+        milkCombo_ = INIT_COMBO_COUNTER;
+        bonusComboMeter_ = INIT_COMBO_COUNTER;
         milkyTimeMeter_ = 0; // 0 - Flag Off; 1 - Flag On.
         
         //Particle
@@ -324,6 +325,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
             [self fatten];
             [self runEatingAnimation];
             [[SimpleAudioEngine sharedEngine] playEffect:kSoundPoints];
+            bonusComboMeter_++;
             break;
         // Milk speeds up the cat and makes it happy
         case kItemMilk:

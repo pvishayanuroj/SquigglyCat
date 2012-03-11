@@ -12,8 +12,8 @@
 
 static const CGFloat TC_BB_X = 0.0f;
 static const CGFloat TC_BB_Y = 0.0f;
-static const CGFloat TC_BB_WIDTH = 40.0f;
-static const CGFloat TC_BB_HEIGHT = 60.0f;
+static const CGFloat TC_BB_WIDTH = 30.0f;
+static const CGFloat TC_BB_HEIGHT = 30.0f;
 
 - (id) init 
 {

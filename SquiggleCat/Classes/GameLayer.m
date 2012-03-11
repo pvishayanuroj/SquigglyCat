@@ -22,6 +22,7 @@
 #import "SimpleAudioEngine.h"
 #import "AnimatedButton.h"
 #import "CCNode+PauseResume.h"
+#import "Banners.h"
 
 @implementation GameLayer
 
@@ -44,12 +45,15 @@ static const NSInteger GL_NUM_USABLE_GRIDS_Y = 7;
 static const NSInteger GL_LEVEL_TIME = 60;
 
 static const CGFloat GL_SCORE_X = 110.0f;
-static const CGFloat GL_SCORE_Y = 450.0f;
-static const CGFloat GL_TIMER_X = 30.0f;
-static const CGFloat GL_TIMER_Y = 450.0f;
+static const CGFloat GL_SCORE_Y = 455.0f;
+static const CGFloat GL_TIMER_X = 25.0f;
+static const CGFloat GL_TIMER_Y = 455.0f;
 
 static const CGFloat GL_CAT_START_X = 100.0f;
 static const CGFloat GL_CAT_START_Y = 200.0f;
+
+static const CGFloat GL_BANNER_START_X = -200.0f;
+static const CGFloat GL_BANNER_START_Y = 320.0f;
 
 static const NSInteger NUM_FISH_PER_CYCLE = 2;
 
@@ -106,7 +110,12 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
         if (sae.willPlayBackgroundMusic) {
             sae.backgroundMusicVolume = 0.25f;
             [sae playBackgroundMusic:kMusicRoadTrip];
-        }        
+        }
+        
+        // Initialize banners
+        comboBanner_ = [[Banners banner] retain];
+        comboBanner_.position = CGPointMake(GL_BANNER_START_X, GL_BANNER_START_Y);
+        [self addChild:comboBanner_ z:5];
         
         // Initialize loops
         [self schedule:@selector(collisionLoop:) interval:GL_COLLISION_LOOP_SPEED];
@@ -125,6 +134,7 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     [timerLabel_ release];
     [scoreText_ release];    
     [pauseButton_ release];
+    [comboBanner_ release];
     
     [super dealloc];
 }
@@ -220,6 +230,8 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     if(cat_.milkyTimeMeter_ <=0)
         [cat_ endMilkyTime];
     
+    if (cat_.milkyTimeMeter_ ==2)
+        [comboBanner_ runSlideIn];
     
 }
 

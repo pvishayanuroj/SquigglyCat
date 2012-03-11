@@ -11,10 +11,10 @@
 
 @implementation Teddy
 
-static const CGFloat TDY_BB_X = 0.0f;
-static const CGFloat TDY_BB_Y = 0.0f;
+static const CGFloat TDY_BB_X = 5.0f;
+static const CGFloat TDY_BB_Y = -5.0f;
 static const CGFloat TDY_BB_WIDTH = 30.0f;
-static const CGFloat TDY_BB_HEIGHT = 40.0f;
+static const CGFloat TDY_BB_HEIGHT = 30.0f;
 
 - (id) init
 {

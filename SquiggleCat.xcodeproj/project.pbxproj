@@ -154,8 +154,6 @@
 		04F7B20314D6338400F774C4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F7B20214D6338300F774C4 /* Utility.m */; };
 		52421A8F150BB28800C284AD /* squigParticle.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421A8E150BB28800C284AD /* squigParticle.png */; };
 		52421A91150BB29900C284AD /* squigParticle-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421A90150BB29900C284AD /* squigParticle-hd.png */; };
-		52421A97150BB42900C284AD /* SquigSheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52421A93150BB42900C284AD /* SquigSheet-hd.plist */; };
-		52421A98150BB42900C284AD /* SquigSheet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421A94150BB42900C284AD /* SquigSheet-hd.png */; };
 		52421A99150BB42900C284AD /* SquiggyF-hd.fnt in Resources */ = {isa = PBXBuildFile; fileRef = 52421A95150BB42900C284AD /* SquiggyF-hd.fnt */; };
 		52421A9A150BB42900C284AD /* SquiggyF-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421A96150BB42900C284AD /* SquiggyF-hd.png */; };
 		52421AAB150BB45600C284AD /* back-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421A9B150BB45600C284AD /* back-hd.png */; };
@@ -176,6 +174,13 @@
 		52421ABA150BB45600C284AD /* start-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421AAA150BB45600C284AD /* start-hd.png */; };
 		52421ABE150BB53D00C284AD /* global-greyed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421ABC150BB53B00C284AD /* global-greyed-hd.png */; };
 		52421ABF150BB53D00C284AD /* local-greyed-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421ABD150BB53C00C284AD /* local-greyed-hd.png */; };
+		52421ACE150C3E3D00C284AD /* Combo-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421ACC150C3E3D00C284AD /* Combo-banner.png */; };
+		52421ACF150C3E3D00C284AD /* MilkyTime-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421ACD150C3E3D00C284AD /* MilkyTime-banner.png */; };
+		52421AD3150C3E8E00C284AD /* Banners.m in Sources */ = {isa = PBXBuildFile; fileRef = 52421AD2150C3E8E00C284AD /* Banners.m */; };
+		52421AD6150C4C4000C284AD /* Combo-banner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421AD4150C4C4000C284AD /* Combo-banner-hd.png */; };
+		52421AD7150C4C4000C284AD /* MilkyTime-banner-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421AD5150C4C4000C284AD /* MilkyTime-banner-hd.png */; };
+		52421ADE150C584300C284AD /* SquigSheet-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52421ADC150C584300C284AD /* SquigSheet-hd.plist */; };
+		52421ADF150C584300C284AD /* SquigSheet-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 52421ADD150C584300C284AD /* SquigSheet-hd.png */; };
 		5294F3AF14E6A077002CAFC2 /* Squiggly-slurp.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5294F3AE14E6A077002CAFC2 /* Squiggly-slurp.wav */; };
 		5294F3B914E6A0C3002CAFC2 /* PaperFlip.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5294F3B314E6A0C3002CAFC2 /* PaperFlip.mp3 */; };
 		5294F3BA14E6A0C3002CAFC2 /* points.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5294F3B414E6A0C3002CAFC2 /* points.wav */; };
@@ -510,8 +515,6 @@
 		04F7B20214D6338300F774C4 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utility.m; path = Classes/Utility.m; sourceTree = "<group>"; };
 		52421A8E150BB28800C284AD /* squigParticle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = squigParticle.png; sourceTree = "<group>"; };
 		52421A90150BB29900C284AD /* squigParticle-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "squigParticle-hd.png"; sourceTree = "<group>"; };
-		52421A93150BB42900C284AD /* SquigSheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SquigSheet-hd.plist"; sourceTree = "<group>"; };
-		52421A94150BB42900C284AD /* SquigSheet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigSheet-hd.png"; sourceTree = "<group>"; };
 		52421A95150BB42900C284AD /* SquiggyF-hd.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "SquiggyF-hd.fnt"; sourceTree = "<group>"; };
 		52421A96150BB42900C284AD /* SquiggyF-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquiggyF-hd.png"; sourceTree = "<group>"; };
 		52421A9B150BB45600C284AD /* back-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-hd.png"; sourceTree = "<group>"; };
@@ -532,6 +535,14 @@
 		52421AAA150BB45600C284AD /* start-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "start-hd.png"; sourceTree = "<group>"; };
 		52421ABC150BB53B00C284AD /* global-greyed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "global-greyed-hd.png"; sourceTree = "<group>"; };
 		52421ABD150BB53C00C284AD /* local-greyed-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "local-greyed-hd.png"; sourceTree = "<group>"; };
+		52421ACC150C3E3D00C284AD /* Combo-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Combo-banner.png"; sourceTree = "<group>"; };
+		52421ACD150C3E3D00C284AD /* MilkyTime-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MilkyTime-banner.png"; sourceTree = "<group>"; };
+		52421AD1150C3E8E00C284AD /* Banners.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Banners.h; sourceTree = "<group>"; };
+		52421AD2150C3E8E00C284AD /* Banners.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Banners.m; sourceTree = "<group>"; };
+		52421AD4150C4C4000C284AD /* Combo-banner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Combo-banner-hd.png"; sourceTree = "<group>"; };
+		52421AD5150C4C4000C284AD /* MilkyTime-banner-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MilkyTime-banner-hd.png"; sourceTree = "<group>"; };
+		52421ADC150C584300C284AD /* SquigSheet-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "SquigSheet-hd.plist"; sourceTree = "<group>"; };
+		52421ADD150C584300C284AD /* SquigSheet-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SquigSheet-hd.png"; sourceTree = "<group>"; };
 		5294F3AE14E6A077002CAFC2 /* Squiggly-slurp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Squiggly-slurp.wav"; sourceTree = "<group>"; };
 		5294F3B314E6A0C3002CAFC2 /* PaperFlip.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = PaperFlip.mp3; sourceTree = "<group>"; };
 		5294F3B414E6A0C3002CAFC2 /* points.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = points.wav; sourceTree = "<group>"; };
@@ -700,6 +711,8 @@
 				040A0C9B14FB205C006803F9 /* GameCenterManager.h */,
 				040A0C9C14FB205C006803F9 /* GameCenterManager.m */,
 				040A0C9F14FB2091006803F9 /* GameCenterManagerDelegate.h */,
+				52421AD1150C3E8E00C284AD /* Banners.h */,
+				52421AD2150C3E8E00C284AD /* Banners.m */,
 				04F7B07114D5FCC300F774C4 /* Resources */,
 				04F7B08514D5FCC300F774C4 /* libs */,
 				04F7B1BE14D5FCC700F774C4 /* Supporting Files */,
@@ -1067,9 +1080,11 @@
 		52421A92150BB3EB00C284AD /* SpriteSets-hd */ = {
 			isa = PBXGroup;
 			children = (
+				52421AD4150C4C4000C284AD /* Combo-banner-hd.png */,
+				52421AD5150C4C4000C284AD /* MilkyTime-banner-hd.png */,
 				52421ABB150BB45A00C284AD /* assets */,
-				52421A93150BB42900C284AD /* SquigSheet-hd.plist */,
-				52421A94150BB42900C284AD /* SquigSheet-hd.png */,
+				52421ADC150C584300C284AD /* SquigSheet-hd.plist */,
+				52421ADD150C584300C284AD /* SquigSheet-hd.png */,
 				52421A95150BB42900C284AD /* SquiggyF-hd.fnt */,
 				52421A96150BB42900C284AD /* SquiggyF-hd.png */,
 				52421A90150BB29900C284AD /* squigParticle-hd.png */,
@@ -1125,6 +1140,8 @@
 		52A32618150B76C100BF0B40 /* SpriteSets */ = {
 			isa = PBXGroup;
 			children = (
+				52421ACC150C3E3D00C284AD /* Combo-banner.png */,
+				52421ACD150C3E3D00C284AD /* MilkyTime-banner.png */,
 				52A3261A150B76DF00BF0B40 /* assets */,
 				52A32646150B94E200BF0B40 /* SquigSheet.plist */,
 				52A32645150B94E200BF0B40 /* SquigSheet.png */,
@@ -1270,8 +1287,6 @@
 				52A3265C150BA73100BF0B40 /* 114.png in Resources */,
 				52421A8F150BB28800C284AD /* squigParticle.png in Resources */,
 				52421A91150BB29900C284AD /* squigParticle-hd.png in Resources */,
-				52421A97150BB42900C284AD /* SquigSheet-hd.plist in Resources */,
-				52421A98150BB42900C284AD /* SquigSheet-hd.png in Resources */,
 				52421A99150BB42900C284AD /* SquiggyF-hd.fnt in Resources */,
 				52421A9A150BB42900C284AD /* SquiggyF-hd.png in Resources */,
 				52421AAB150BB45600C284AD /* back-hd.png in Resources */,
@@ -1292,6 +1307,12 @@
 				52421ABA150BB45600C284AD /* start-hd.png in Resources */,
 				52421ABE150BB53D00C284AD /* global-greyed-hd.png in Resources */,
 				52421ABF150BB53D00C284AD /* local-greyed-hd.png in Resources */,
+				52421ACE150C3E3D00C284AD /* Combo-banner.png in Resources */,
+				52421ACF150C3E3D00C284AD /* MilkyTime-banner.png in Resources */,
+				52421AD6150C4C4000C284AD /* Combo-banner-hd.png in Resources */,
+				52421AD7150C4C4000C284AD /* MilkyTime-banner-hd.png in Resources */,
+				52421ADE150C584300C284AD /* SquigSheet-hd.plist in Resources */,
+				52421ADF150C584300C284AD /* SquigSheet-hd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1420,6 +1441,7 @@
 				04DE522E14FA702F00F8E45C /* PauseLayer.m in Sources */,
 				04DE523214FA763800F8E45C /* CCNode+PauseResume.m in Sources */,
 				040A0C9D14FB205C006803F9 /* GameCenterManager.m in Sources */,
+				52421AD3150C3E8E00C284AD /* Banners.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

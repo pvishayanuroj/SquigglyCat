@@ -15,10 +15,13 @@
 @class Pair;
 @class IncrementingText;
 @class AnimatedButton;
+@class Banners;
 
 @interface GameLayer : CCLayer <ItemDelegate> {
     
     Cat *cat_;
+    
+    Banners *comboBanner_;
     
     IncrementingText *scoreText_;
     
