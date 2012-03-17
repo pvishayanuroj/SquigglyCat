@@ -69,6 +69,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
         [self runTailAnimation];
         [self catBreathing];
         
+        currentMoveAction_ = nil;
         velocity_ = CAT_VELOCITY;
         milkCombo_ = INIT_COMBO_COUNTER;
         bonusComboMeter_ = INIT_COMBO_COUNTER;
@@ -123,6 +124,7 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     [surprisedFaceAnimation_ release];
     [yummyFaceAnimation_ release];
     [poopFaceAnimation_ release];
+    [currentMoveAction_ release];    
     [particle_ release];
 
     [super dealloc];
@@ -391,7 +393,11 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
     
     id move = [CCMoveTo actionWithDuration:moveDuration position:pos];
     id done = [CCCallFunc actionWithTarget:self selector:@selector(doneWalking)];
-    [self runAction:[CCSequence actions:move, done, nil]];    
+    if (currentMoveAction_) {
+        [self stopAction:currentMoveAction_];
+    }
+    [currentMoveAction_ release];
+    currentMoveAction_ = [[self runAction:[CCSequence actions:move, done, nil]] retain];   
     [self runWalkAction];
 }
 

@@ -41,6 +41,8 @@
     
     //*****************
     
+    CCAction *currentMoveAction_;
+    
     CGRect boundingBox_;
     
     CGPoint moveTarget_;
