@@ -12,8 +12,9 @@ typedef enum {
     kItemLitterBox = 2,
     kItemTrashCan = 3,
     kItemTeddyBear = 4,
+    kItemBee = 5,
     
-    kNumItemTypes = 5
+    kNumItemTypes = 6
 } ItemType;
 
 #define NUM_HIGH_SCORES 10

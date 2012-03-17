@@ -359,10 +359,17 @@ static const CGFloat MAX_MILKY_TIME_METER = 3.0f;  //How long Milky Time lasts
             break;
         // Teddy bear runs surprised animation
         case kItemTeddyBear:
-            if(milkyTimeMeter_ <1){
+            if(milkyTimeMeter_ < 1){
                 [self stopAllActions];            
                 [self runHurtAnimation];
                 [[SimpleAudioEngine sharedEngine] playEffect:kSoundBirdSquawk];
+            }
+            break;
+        case kItemBee:
+            if(milkyTimeMeter_ < 1) {
+                [self stopAllActions];            
+                [self runHurtAnimation];
+                //[[SimpleAudioEngine sharedEngine] playEffect:kSoundBirdSquawk];
             }
             break;
         default:

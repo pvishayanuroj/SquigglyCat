@@ -13,6 +13,7 @@
 #import "Fish.h"
 #import "Milk.h"
 #import "Teddy.h"
+#import "Bee.h"
 #import "Litterbox.h"
 #import "TrashCan.h"
 #import "Utility.h"
@@ -243,10 +244,10 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
     if (itemType == kItemFish) {
         scoreText_.score += 100;   
     }
-    else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox) {
-        if(cat_.milkyTimeMeter_<=0){
+    else if (itemType == kItemTeddyBear || itemType == kItemTrashCan || itemType == kItemLitterBox || itemType == kItemBee) {
+        if (cat_.milkyTimeMeter_ <= 0) {
             //If MilkyTime meter is 0, then freeze cat
-        [self freezeCat];
+            [self freezeCat];
         }
     }
     
@@ -320,6 +321,9 @@ static const CGFloat GL_FREEZE_DURATION = 1.0f;
             break;
         case kItemTeddyBear:
             item = [Teddy node];
+            break;
+        case kItemBee:
+            item = [Bee node];
             break;
         default:
             NSAssert(NO, @"Invalid item type for addItem");
