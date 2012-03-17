@@ -12,6 +12,10 @@
 
 @interface Fish : Item {
 
+    CCAction *flopAnimation_;    
+    
 }
+
+- (void) initFlopAnimation:(NSUInteger)idx;
 
 @end

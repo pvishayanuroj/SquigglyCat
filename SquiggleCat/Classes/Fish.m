@@ -23,33 +23,18 @@ static const CGFloat FS_BB_HEIGHT = 28.0f;
         itemType_ = kItemFish;        
         
         boundingBox_ = CGRectMake(FS_BB_X, FS_BB_Y, FS_BB_WIDTH, FS_BB_HEIGHT);
-        int x = rand()%6+1;        
-        switch (x) {
-            case 1:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1-1.png"] retain];
-                break;
-            case 2:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2-1.png"] retain];
-                break;
-            case 3:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3-1.png"] retain];
-                break;
-            case 4:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish1-3.png"] retain];
-                break;
-            case 5:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish2-3.png"] retain];
-                break;
-            case 6:
-                sprite_ = [[CCSprite spriteWithSpriteFrameName:@"fish3-3.png"] retain];
-                break;
-            default:
-                break;
-        }
-        [sprite_ setRotation:rand()%4*45];
-        [self addChild:sprite_ z:-1];       
         
-        [super spawnIn];
+        NSInteger randIdx = arc4random() % 3 + 1;
+        
+        NSString *spriteName = [NSString stringWithFormat:@"fish%d-1.png", randIdx];
+        sprite_ = [[CCSprite spriteWithSpriteFrameName:spriteName] retain];
+        [sprite_ setRotation:arc4random()%4*45];
+        [self addChild:sprite_ z:-1];          
+        
+        [self initFlopAnimation:randIdx];
+        [sprite_ runAction:flopAnimation_];        
+        
+        [super spawnIn];        
     }
     
 	return self;
@@ -58,8 +43,23 @@ static const CGFloat FS_BB_HEIGHT = 28.0f;
 - (void) dealloc
 {
     [sprite_ release];
+    [flopAnimation_ release];
     
     [super dealloc];
+}
+
+- (void) initFlopAnimation:(NSUInteger)idx
+{
+    NSMutableArray *frames = [NSMutableArray array];
+    
+    for (NSInteger i = 1; i < 4; ++i) {
+        NSString *name = [NSString stringWithFormat:@"fish%d-%d.png", idx, i];
+        NSLog(@"%@", name);
+        [frames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:name]];
+    }
+    
+    CCAnimation *animation = [CCAnimation animationWithFrames:frames delay:0.2f];
+    flopAnimation_ = [[CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:animation restoreOriginalFrame:YES]] retain];     
 }
 
 @end
